@@ -1,0 +1,2398 @@
+                                                   5
+                                 Perturbation theory
+
+
+
+
+In this chapter, we introduce the analytical machinery to investigate the properties of many-body systems
+perturbatively. Speciﬁcally, employing the “φ4 -theory” as an example, we learn how to describe systems
+that are not too far from a known reference state by perturbative means. Diagrammatic methods are
+introduced as a tool to eﬃciently implement perturbation theory at large orders. The new concepts are
+then applied to the analysis of various properties of the weakly interacting electron gas.
+
+
+
+
+In previous chapters we have emphasized repeatedly that the majority of many-particle
+problems cannot be solved in closed form. Therefore, in general, one is compelled to
+think about approximation strategies. One promising ansatz leans on the fact that, when
+approaching the low-temperature physics of a many-particle system, we often have some
+idea, however vague, of its preferred states and/or its low-energy excitations. One may
+then set out to explore the system by using these prospective ground state conﬁgurations
+as a working platform. For example, one might expand the Hamiltonian in the vicinity
+of the reference state and check that, indeed, the residual “perturbations” acting in the
+low-energy sector of the Hilbert space are weak and can be dealt with by some kind of
+approximate expansion. Consider, for example, the quantum Heisenberg magnet. In dimen-
+sions higher than one, an exact solution of this system is out of the question. However,
+we know (or, more conservatively, “expect”) that, at zero temperature, the spins will be
+frozen into conﬁgurations aligned along some (domain-wise) constant magnetisation axes.
+Residual ﬂuctuations around these conﬁgurations, described by the Holstein–Primakoﬀ
+boson excitations, or spin waves, discussed before can be described in terms of a controlled
+expansion scheme. Similar programs work for countless other physical systems.
+   These considerations dictate much of our further strategy. We will need to construct
+methods to identify and describe the lowest-energy conﬁgurations of many-particle systems –
+often called “mean-ﬁelds” – and learn how to implement perturbation theory around them.
+In essence, the ﬁrst part of that program amounts to solving a variational problem, a
+relatively straightforward task. However, the formulation of perturbation strategies requires
+some preparation and, equally important, a good deal of critical caution (because many
+systems notoriously defy perturbative assaults – a fact easily overlooked or misjudged!). We
+thus turn the logical sequence of the two steps upside down and devote this chapter to an
+introduction to many-body perturbation theory. This will include a number of applications,
+i.e. problems where the mean-ﬁeld is trivial and perturbation theory on its own suﬃces to
+
+                                                  193
+194                                   Perturbation theory
+
+produce meaningful results. Perturbation theory superimposed on non-trivial mean-ﬁelds
+will then be the subject of the next chapter.
+
+
+                  5.1 General structures and low-order expansions
+As with any other perturbative approach, many-body perturbation theory amounts to an
+expansion of observables in powers of some parameter – typically the coupling strength of
+an interaction operator. However, before discussion of how this program is implemented in
+practice, it is imperative to develop some understanding of the mathematical status of such
+“series expansions.” (To motivate the point: it may, and often does, happen that the inﬁnite-
+order expansion in the “small parameter” of the problem does not exist in a mathematical
+sense!) This can be achieved by considering the following.
+
+
+                                   An instructive integral
+Consider the integral
+                                     ∞    
+                                       dx    1
+                            I(g) =    √ exp − x2 − gx4 .                                  (5.1)
+                                   −∞   2π   2
+This can be regarded as a caricature of a particle subject to some harmonic potential
+(x2 ) together with an “interaction” (x4 ). For small g  1, it seems natural to treat the
+                                                                 
+interaction perturbatively, i.e. to develop the expansion I(g) ≈ n g n In , where, applying
+                             n1
+Stirling’s approximation, n! ∼ nn e−n ,
+                          
+                     (−g)n ∞ dx − 1 x2 4n      (4n − 1)!! n1  gn n
+            g n In =           √ e 2 x = (−g)n             ∼ −        .
+                       n!   −∞  2π                 n!            e
+This estimate should alarm us: strictly speaking, it states that a series expansion in the
+“small parameter” g does not exist. No matter how small g, at roughly the (1/g)th order
+in the perturbative expansion the series begins to diverge. In fact, it is easy to predict
+this breakdown on qualitative grounds: for g > 0 (g < 0), the integral (5.1) is convergent
+(divergent). This implies that the series expansion of the function I(g) around g = 0 must
+have zero radius of convergence.
+  However, there is also a more “physical” way of understanding the phenomenon. Consider
+a one-dimensional version of Eq. (3.16), where the ‘Gaussian average’ is given by Eq. (3.15):
+                     ∞                           
+                          dx
+                         √ e− 2 x x4n =
+                                 1 2
+                                                           1 = (4n − 1)!!.
+                     −∞    2π                 all possible
+                                            pairings of 4n objects
+
+
+The factor (4n − 1)!! measures the combinatorial freedom to pair up 4n objects. This sug-
+gests an interpretation of the breakdown of the perturbative expansion as the result of a
+competition between the smallness of the expansion parameter g and the combinatorial
+proliferation of equivalent contributions, or “pairings,” to the Gaussian integral. Physically,
+the combinatorial factor can be interpreted as the number of diﬀerent “partial amplitudes”
+contributing to the net result at any given order of perturbation theory. Eventually, the
+                         5.1 General structures and low-order expansions                            195
+
+exponential growth of this ﬁgure overpowers the smallness of the expansion parameter,
+which is when perturbation theory breaks down. (Oddly the existence of this rather gen-
+eral mechanism is usually not mentioned in textbook treatments of quantum perturbation
+theory!)
+  Does the ill-convergence of the series imply that perturbative approaches to problems
+of the structure of Eq. (5.1) are doomed to fail? Fortunately, this is not the case. While
+                   ∞ n                                              nmax n
+the inﬁnite series    n=0 g In is divergent, a partial resummation     n=0 g In can yield
+excellent approximations to the exact result I(g). To see this, let us use the fact that
+         nmax (−gx4 )n         4 nmax +1
+|e−gx − n=0
+     4
+
+                   n!   | ≤ (gx  )
+                             (nmax +1)! to estimate the error
+
+                         n
+                          max                                               gn         nmax
+                                                                 nmax 1          max
+                I(g) −          g n In ≤ g nmax +1 |Inmax +1 |     ∼                            .
+                         n=0
+                                                                              e
+
+Variation with respect to nmax shows that the error reaches its minimum when nmax ∼ g −1
+where it scales like e−1/g . (Notice the exponential dependence of the error on the coupling
+g – e.g. for a small coupling g ≈ 0.01, the 100th order of the perturbation theory would
+lead to an approximation of astronomic absolute precision e−100 .) By contrast, for g ≈ 0.3,
+perturbation theory becomes poor after the third order!
+   Summarizing, the moral to be taken from the analysis of the integral (5.1) (and its
+generalizations to theories of a more complex structure) is that perturbative expansions
+should not be confused with rigorous Taylor expansions. Rather they represent asymptotic
+expansions, in the sense that, for weaker and weaker coupling, a partial resummation of
+the perturbation series leads to an ever more precise approximation to the exact result. For
+weak enough coupling the distinction between Taylor expansion and asymptotic expansion
+becomes academic (at least for physicists). However, for intermediate or strong coupling
+theories, the asymptotic character of perturbation theory must be kept in mind.
+
+
+
+                                              φ4 -theory
+While the ordinary integral discussed in the previous section conveyed something of the
+general status of perturbation theory, we need to proceed to the level of functional integrals
+to learn more about the practical implementation of perturbative methods. The simplest
+interacting ﬁeld theory displaying all relevant structures is deﬁned through the ﬁeld integral
+                                                                         
+                             −S[φ]                     1         r 2
+                Z ≡ Dφ e           , S[φ] ≡ d x   d           2
+                                                         (∂φ) + φ + gφ ,  4
+                                                                                         (5.2)
+                                                       2         2
+
+where φ is a scalar bosonic ﬁeld. Owing to the structure of the interaction, this model is
+often referred to as the φ4 -theory. The φ4 -model not only provides a prototypical envi-
+ronment in which features of interacting ﬁeld theories can be explored, but also appears
+in numerous applications. For example, close to its critical point, the d-dimensional Ising
+model is described by the φ4 -action (see Info below). More generally, it can be shown that
+the long-range behavior of classical statistical systems with a single order parameter (e.g.
+196                                             Perturbation theory
+
+the density of a ﬂuid, uniaxial magnetization, etc.) is described by the φ4 -action.1 Within
+the context of statistical mechanics, S[φ] is known as the Ginzburg–Landau free energy
+functional (and less frequently also as the Landau–Wilson model).
+    INFO The d-dimensional Ising model describes the classical magnetism of a lattice of magnetic
+    moments Si ∈ {1, −1} that can take only two values ±1. It is deﬁned through the Hamiltonian
+                                                           
+                                  HIsing =    Si Cij Sj − H    Si ,                        (5.3)
+                                                        ij                i
+
+    where Cij = C(|i − j|) is a (translationally invariant) correlation matrix describing the mutual
+    interaction of the spins, H is an external magnetic ﬁeld, and the sums run over the sites of a d-
+    dimensional lattice (assumed hypercubic for simplicity). The Ising model represents the simplest
+    Hamiltonian describing classical magnetism. In low dimensions d = 1, 2, it can be solved exactly,
+    i.e. the partition function and all observables depending on it can be computed rigorously (see
+    our discussion in Chapter 8). However, for higher dimensions, no closed solutions exist and one
+    has to resort to approximation strategies to analyze the properties of the partition function.
+    Below we will show that the long-range physics of the system is described by φ4 -theory. Notice
+    that (save for the exceptional case d = 1 discussed in Section 8.1) the system is expected to
+    display a magnetic phase transition. As a corollary this implies that the φ4 -model must exhibit
+    much more interesting behavior than its innocent appearance suggests!
+       Consider the classical partition function
+                                              S K S + h S
+                                       Z=       e ij i ij j   i i i,                            (5.4)
+                                                  {Si }
+
+    where K ≡ −βC, and hi ≡ βHi , and we have generalized Eq. (??) to the case of a spatially
+    varying magnetic ﬁeld, Hi . The feature that prevents us from rigorously computing the conﬁgu-
+    rational sum is, of course, the interaction between the spins. However,        at a price, the interaction
+                                                                           1           −1
+    can be removed: let us consider the “fat unity,” 1 = N Dψ e−           4   ij ψi (K    )ij ψj
+                                                                                                   , where Dψ ≡
+                −1
+       i dψi , K    is the inverse of the correlation matrix, and N = 1/ det(4πK) is a factor normal-
+                                                                                         
+    izing the integral to unity. A shift of the integration variables, ψi → ψi − 2 j Kij Sj , brings the
+    integral into the form
+                                    
+                                              1       −1                
+                             1=N       Dψ e− 4 ij ψi (K )ij ψj + i Si ψi − ij Si Kij Sj .
+
+    Incorporating the fat unity under the spin sum in the partition function, one obtains
+                                        − 1  ψ (K −1 ) ψ + S (ψ +h )
+                          Z=N       Dψ       e 4 ij i      ij j    i i  i  i
+                                                                             .                                   (5.5)
+                                                {Si }
+
+    Thus, we have removed the interaction between the spin variables at the expense of introducing a
+                                                                                     
+    new continuous ﬁeld {ψi }. Why should one do this? A multi-dimensional integral Dψ is usually
+                                                       
+    easier to work with than a multi-dimensional sum     {Si } over discrete objects. Moreover, the
+    new representation may provide a more convenient platform for approximation strategies. The
+
+1
+    Heuristically, this is explained by the fact that S[φ] is the simplest interacting (i.e. non-Gaussian) model action
+    invariant under inversion φ ←→ −φ. (The action of a uniaxial magnet should depend on the value of the
+    local magnetization, but not on its sign.) A purely Gaussian theory might describe wave-like ﬂuctuations of
+    the magnetization, but not the “critical” phenomenon of a magnetic transition. One thus needs, at least, a
+    φ4 -interaction term. Later on we will see that more complex monomials of φ, such as φ6 or (∂φ)4 , are inessential
+    in the long-range limit.
+                              5.1 General structures and low-order expansions                                             197
+
+    transformation leading from Eq. (5.4) to (5.5) is our ﬁrst example of a Hubbard–Stratonovich
+    transformation. The interaction of one ﬁeld is decoupled at the expense of the introduction of
+    another. Notice that, in spite of the somewhat high-minded designation, the transformation is
+    tantamount to a simple shift of a Gaussian integration variable, a feature shared by all Hubbard–
+    Stratonovich transformations!
+                                 
+       The summation {Si } = i Si can now be trivially performed:
+                                                            -
+                                           1         −1
+                      Z = N          Dψ e− 4 ij ψi (K )ij ψj     (2 cosh(ψi + hi ))
+                                                                                    i
+                                                                                               
+                                                                                −1
+                                                        −1       ij (ψi −hi )(K    )ij (ψj −hj )+
+                              =       N        Dψ e      4                                           i ln(cosh ψi )   ,
+                                                      
+    where we have absorbed the inessential factor i 2 into a redeﬁnition of the normalization
+                                                                        
+    N . Finally, changing integration variables from ψi to φi ≡ 12 j [K −1 ]ij ψj , one arrives at the
+    intermediate result
+                                                                        
+                        Z=N       Dφ e− ij φi Kij φj + i φi hi + i ln cosh(2 j Kij φj ) .
+
+    This representation of the problem still does not look very inviting. To bring it into a form
+    amenable to further analytical evaluation, we need to make the simplifying assumption that we
+    are working at low temperatures such that the exponential weight Kij = βC(|i − j|) inhibits
+    strong ﬂuctuations of the ﬁeld φ. More precisely, we assume that |φi |       1 and that the spatial
+    proﬁle of the ﬁeld is smooth. To make use of these conditions, we switch to a Fourier repre-
+                                                        −ik·(ri −rj )
+    sentation, φi = √1N k e−ik·ri φ(k), Kij = N1          ke            K(k), and expand ln cosh(x) =
+      x − 12 x + · · · . Noting that (Kφ)(k) = K(k)φ(k) = K(0)φ(k) + 12 k2 K  (0)φ(k) + O(k4 ), we
+    1 2
+    2
+            1 4
+
+    conclude that the low-temperature expansion of the action has the general structure
+                              
+                  S[φ] =          [φk (c1 + c2 k · k)φ−k + c3 φk h−k ]
+                                  k
+                                      c4       
+                                  +                     φk1 φk2 φk3 φk4 δk1 +k2 +k3 +k4 ,0 + O(k4 , h2 , φ6 ).
+                                      N
+                                           k1 ,...,k4
+
+       EXERCISE Show that the coeﬃcients ci are given by c1 = K(0)(1 − 2K(0)), c2 = 12 K  (0)(1 −
+                                           4
+       4K(0)), c3 = 1, c4 = 4K(0)
+                              3
+                                  .
+
+    Switching back to a real space representation and taking a continuum limit, S[φ] assumes the
+    form of a prototypical φ4 -action
+                                     
+                                                                        !
+                            S[φ] = dd x c2 (∂φ)2 + c1 φ2 + c3 φh + c4 φ4 .
+
+    A rescaling of variables φ → √2c 1
+                                       2
+                                         φ ﬁnally brings the action into the form Eq. (5.2) with coeﬃ-
+    cients r = c1 /c2 and g = c4 /(2c2 ).2
+       We have thus succeeded in describing the low-temperature phase of the Ising model in terms
+    of a φ4 -model. While the structure of the action could have been guessed on symmetry grounds,
+    the “microscopic” derivation has the advantage that it yields explicit expressions for the coupling
+    constants. There is actually one interesting aspect of the dependence of these constants on the
+
+2
+    The only diﬀerence is that the magnetic φ4 -action contains a term linear in φ and h. The reason is that, in the
+    presence of a ﬁnite magnetic ﬁeld, the action is no longer invariant under inversion φ → −φ.
+198                                          Perturbation theory
+
+    parameters of the microscopic model. Consider the constant c1 controlling the k-independent
+    contribution to the Gaussian action: c1 ∝ K(0)(1 − 2K(0)) ∝ (1 − 2βC(0)). Since C(0) must be
+    positive to ensure the overall stability of the model (exercise: why?) the constant c1 will change
+    sign at a certain “critical temperature” β ∗ . For temperatures lower than β ∗ , the Gaussian action
+    is unstable (i.e. ﬂuctuations with low wavevector become unbound) and the anharmonic term
+    φ4 alone controls the stability of the model. Clearly, the behavior of the system will change
+    drastically at this point. Indeed, the critical temperature c1 (β ∗ ) = 0 marks the position of the
+    magnetic phase transition, a point to be discussed in more detail below.
+
+Let us begin our primer of perturbation theory by introducing some nomenclature.3 For
+simplicity, let us ﬁrst deﬁne the notation
+                                                     Dφ e−S[φ] ( · · · )
+                                         ··· ≡                           ,                              (5.6)
+                                                      Dφ e−S[φ]
+for the functional integral, weighted by the action S, of any expression ( · · · ). Due to the
+structural similarity to thermal averages of statistical mechanics, · · · is sometimes called
+a functional average or functional expectation value. Similarly, let us deﬁne
+                                                     Dφ e−S0 [φ] ( · · · )
+                                        ··· 0 ≡                            ,                            (5.7)
+                                                      Dφ e−S0 [φ]
+for the functional average over the Gaussian action S0 ≡ S|g=0 . The average over a product
+of ﬁeld variables,
+                          Cn (x1 , x2 , . . . , xn ) ≡ φ(x1 )φ(x2 ) · · · φ(xn ) ,                      (5.8)
+is known as an n-point correlation function or, for brevity, just the n-point function.4
+                                                            The one-point function C1 (x) =
+   George Green 1793–1841                                 φ(x) simply measures the expec-
+   His only schooling consisted of four terms in
+   1801/1802. He owned and worked a Nottingham
+                                                         tation value of the ﬁeld amplitude.
+   windmill. Green made major contributions to poten-    For the particular case of the φ4 -
+   tial theory although where he learnt his mathemat-    problem above the phase transition
+   ical skills is a mystery. The inventor of Green func- and, more generally, the majority of
+   tions, he used the method of sources and sinks in
+   potential ﬂows. He published only ten mathemati-      ﬁeld theories with an action even in
+   cal works, the ﬁrst and most important being pub-     the ﬁeld amplitudes, C1 = 0 and the
+   lished at his own expense in 1828, “An essay on the   ﬁrst non-vanishing correlation func-
+   application of mathematical analysis to the theories
+   of electricity and magnetism.” He left his mill and   tion is the two-point function
+    became an undergraduate at Cambridge in 1833 at
+    the age of 40, then a Fellow of Gonville and Caius                   G(x1 − x2 ) ≡ C2 (x1 , x2 ).   (5.9)
+    College in 1839.
+                                                     (Why does C2 depend only on the
+diﬀerence of its arguments?) The two-point function is sometimes also called the propa-
+gator of the theory, the Green function or, especially in the more formal literature, the
+resolvent operator.
+
+3
+    Needless to say, the jargon introduced below is not restricted to the φ4 example!
+4
+    Notice that, depending on the context and/or scientiﬁc community, the phrase “n-point function” sometimes
+    refers to C2n instead of Cn .
+                              5.1 General structures and low-order expansions                                199
+
+  The existence of diﬀerent names suggests that we have met with an important object.
+Indeed, we will shortly see that the Green function not only represents a central building
+block of the theory but also carries profound physical signiﬁcance.
+
+
+    INFO To develop some understanding of the physical meaning of the correlation function,
+    let us recall that the average of a linear ﬁeld amplitude, φ(0), vanishes. (See the ﬁgure, where
+    a diagram of a few “typical” ﬁeld conﬁgurations is sketched as functions of a coordinate.)
+       However, the average of the squared φ
+    amplitude (φ(0))2 is certainly non-vanishing
+    simply because we are integrating over
+    a positive object. Now, what happens if
+    we split our single observation point into
+    two, φ2 (0)0 → φ(0)φ(x)0 = G(x)? For
+    asymptotically large values of x, it is likely
+    that the two amplitudes ﬂuctuate indepen-                        0      x
+                                        |x|→∞
+    dently of each other, i.e. G(x) −→ 0. However, this decoupling will not happen locally. The
+    reason is that the ﬁeld amplitudes are correlated over a certain range in space. For example,
+    if φ(0) > 0, the ﬁeld amplitude will, on average, stay positive in an entire neighborhood of 0
+    since rapid ﬂuctuations of the ﬁeld are energetically costly (i.e. due to the gradient term in the
+    action!). The spatial correlation proﬁle of the ﬁeld is described by the function G(x).
+       How does the correlation behavior of the ﬁeld relate to the basic parameters of the action?
+    A quick answer can be given by dimensional analysis. The action of the theory must be
+    dimensionless (because it appears as the argument of an exponential). Denoting the dimension of
+                                                      d 
+    any quantity X by [X], and using the fact that      d x = Ld , [∂] = L−1 , inspection of Eq. (5.2)
+    obtains the set of relations
+                                 Ld−2 [φ]2 = 1,    Ld [r][φ]2 = 1,    Ld [g][φ]4 = 1,
+    from which it follows that [φ] = L−(d−2)/2 , [r] = L−2 , [g] = Ld−4 . In general, both system
+    parameters, g and r, carry a non-zero length-dimension. However, temporarily concentrating on
+    the non-interacting sector, g = 0, the only parameter of the theory, r, has dimensionality L−2 .
+    Arguing in reverse, we conclude that any intrinsic length scale produced by the theory (e.g. the
+    range over which the ﬁelds are correlated), must scale as ∼ r−1/2 .
+
+         A more quantitative description can be obtained by considering the free propagator of
+    the theory,
+                                             G0 (x) ≡ φ(0)φ(x)0 .                                        (5.10)
+    Since the momentum representation of the Gaussian action is simply given by S0 [φ] =
+       
+     1
+          φp (p2 + r)φ−p , it is convenient to ﬁrst compute G0 in reciprocal space: G0,p ≡
+    2 d p ip·x          
+       d xe     G0 (x) =   p φp φp 0 . Using the Gaussian contraction rule Eq. (3.14), the free
+                                    
+
+    functional average takes the form φp φp 0 = δp+p ,0 (p2 + r)−1 , i.e.5
+                                                                    1
+                                          G0,p = φp φ−p 0 =           .                                  (5.11)
+                                                                 p2 + r
+
+5
+    The result G0,p = (p2 + r)−1 clariﬁes why G is referred to as a “Green function.” Indeed, G0,p is (the Fourier
+    representation of the) Green function of the diﬀerential equation (−∂r2 + r)G(r, r ) = δ(r − r ).
+200                                      Perturbation theory
+
+  To obtain G(x), we need to compute the inverse transform
+                                                     
+                                 1  −ip·x               dd p e−ip·x
+                        G0 (x) = d     e     G0,p ≈                  ,                          (5.12)
+                                L p                     (2π)d p2 + r
+
+  where we have assumed that the system is large, i.e. the sum over momenta can be exchanged
+  for an integral.
+     For simplicity, let us compute the integral for a one-dimensional system. (For the two- and
+  three-dimensional cases see exercise below.) Setting p2 + r = (p + ir1/2 )(p − ir1/2 ), we note that
+  the (complex extension of the) p integral has simple poles at ±ir1/2 . For x smaller (larger) than
+  zero, the integrand is analytic in the upper (lower) complex p-plane and closure of the integration
+  contour to a semicircle of inﬁnite radius gives
+                                                                        1/2
+                                        dp         e−ipx              e−r |x|
+                           G0 (x) =                                 =         .                 (5.13)
+                                        2π (p + ir1/2 )(p − ir1/2 )    2r1/2
+  This result conveys an interesting observation: typically, correlations decay exponentially, at
+  a rate set by the correlation length ξ ≡ r−1/2 . However, as r approaches 0, the system
+  becomes long-range correlated. The origin of this phenomenon can be understood by inspecting
+  the structure of the Gaussian contribution to the action (5.2). For r → 0 (and still neglecting the
+  φ4 contribution) nothing prevents the constant ﬁeld mode φ(x) = φ0 = const. from becoming
+  inﬁnitely large, i.e. the ﬂuctuating contribution to the ﬁeld becomes relatively less important
+  than the constant oﬀset. The increasing “stiﬀness” of the ﬁeld in turn manifests itself in a growth
+  of spatial correlations (cf. the ﬁgure on page 201). Notice that this dovetails with our previous
+  statement that r = 0 marks the position of a phase transition. Indeed, the build-up of inﬁnitely
+  long-range spatial correlations is known to be a hallmark of second-order phase transitions (see
+  Chapter 8).
+
+  EXERCISE Referring to Eq. (5.12), show that, in dimensions d = 2 and d = 3,
+                                                         *          √                         √
+               d=2        d2 k e−ik·x    1     √              − 2π
+                                                                 1
+                                                                   ln r|x| ,           |x|   1/ r,
+      G0 (x)   =                      =    K0 ( r|x|) =             √ 2 − 1 −√r|x|             √
+                              2 2
+                         (2π) k + r     2π                    1
+                                                              2
+                                                                (2π  r|x|)   2e    ,   |x|  1/ r,
+                                          √
+               d=3        d3 k e−ik·x   e− r|x|
+      G0 (x)   =              3 2
+                                      =         .
+                         (2π) k + r      4π|x|
+  Notice that, in both cases, the Green function diverges in the limit |x| → 0 and decays exponen-
+  tially (at a rate ∼ r−1/2 ) for |x|  r−1/2 .
+
+
+
+                             Perturbation theory at low orders
+Having discussed the general structure of the theory and of its free propagator, let us turn
+our attention to the role of the interaction contribution to the action,
+                                                 
+                                     Sint [φ] ≡ g dd x φ4 .
+
+Within the jargon of ﬁeld theory, an integrated monomial of a ﬁeld variable (like φ4 ) is
+commonly called an (interaction) operator or a vertex (operator). Keeping in mind the
+words of caution given in Section 5.1, we wish to explore perturbatively how the interaction
+                        5.1 General structures and low-order expansions                       201
+
+vertex aﬀects the functional expectation value of any given ﬁeld observable, i.e. we wish to
+analyze expansions of the type
+                              ...
+                                     (−g)n
+                                       n!    X[φ]( dd x φ4 )n 0   nmax
+                              n=0
+                     X[φ] ≈         (−g)n
+                                   ...                          ≈       X (n) ,       (5.14)
+                                                  d    4
+                                              ( d xφ ) 0 n
+                                          n!                       n=0
+                                  n=0
+
+where X may be any observable and X (n) denotes the contribution of nth order to the
+expansion in g. The limits on the summation in the numerator and denominator are symbolic
+because, as explained above, we will need to terminate the total perturbative expansion at
+a certain ﬁnite order nmax .
+  EXERCISE To navigate the following section, it is helpful to recapitulate Section 3.2 on contin-
+  uum Gaussian integration.
+
+To keep the discussion concrete, let us focus on the perturbative expansion of the propa-
+gator in the coupling constant, g. (A physical application relating to this expansion will be
+discussed below.) The zeroth-order contribution G(0) = G0 has been discussed before, so
+the ﬁrst non-trivial term we have to explore is G(1) :
+                   @                       A    @            A @              A 
+                                                           
+ G (x, x ) = −g
+   (1)
+                       φ(x) d y φ(y) φ(x ) − φ(x)φ(x )
+                               d      4                                 d
+                                                                      d y φ(y) 4
+                                                                                     . (5.15)
+                                                 0                 0                 0
+
+Since the functional average is now over a Gaussian action, this expression can be evaluated
+by Wick’s theorem, Eq. (3.21). For example, the functional average of the ﬁrst of the two
+terms leads to (integral signs and constants stripped oﬀ for clarity)
+                   9                 :
+                     φ(x)φ(y)4 φ(x ) 0 = 3 φ(x)φ(x ) 0 [ φ(y)φ(y) 0 ]
+                                                                        2
+
+
+                        +12 φ(x)φ(y) 0 φ(y)φ(y) 0 φ(y)φ(x ) 0
+                        = 3G0 (x − x )G0 (0)2 + 12G0 (x − y)G0 (0)G0 (y − x ),           (5.16)
+where we have used the fact that the operator inverse of the Gaussian action is, by deﬁnition,
+the free Green function (cf. Eq. (5.10)). Further, notice that the total number of terms
+appearing on the right-hand side is equal to 15 = (6−1)!! which is just the number of distinct
+pairings of six objects (cf. Eq. (3.21) and with our discussion of Section 5.1). Similarly, the
+second contribution to G(1) leads to
+           φ(x)φ(x ) 0 φ(y)4 0 = 3 φ(x)φ(x ) 0 [ φ(y)2 0 ]2 = 3G0 (x − x )G0 (0)2 .
+  Before analyzing these structures in more detail, let us make some general observations.
+The ﬁrst-order expansion of G contains a number of factors of G0 (0), the free Green function
+evaluated at coinciding points. This bears disturbing consequences. To see this, consider
+G0 (0) evaluated in momentum space:
+                                          
+                                             dd p     1
+                                G0 (0) =                  .                            (5.17)
+                                            (2π)d p2 + r
+For dimensions d > 1, the integral is divergent at large momenta or short wavelengths; we
+have met with an ultraviolet (UV) divergence. Physically, the divergence implies that,
+202                                     Perturbation theory
+
+already at ﬁrst order, our expansion runs into a diﬃculty that is obviously related to the
+short-distance structure of the system. How can this problem be overcome? One way out
+is to remember that ﬁeld theories like the φ4 -model represent eﬀective low-temperature, or
+long-wavelength, approximations to more microscopic models. The range of applicability of
+the action must be limited to wavelengths in excess of some microscopic lattice cutoﬀ a (e.g.
+the lattice spacing), or momenta k < a−1 . It seems that, once that cutoﬀ has been built
+in, the convergence problem is solved. However, there is something unsatisfactory in this
+argument. All our perturbative corrections, and therefore the ﬁnal result of the analysis,
+exhibit sensitivity to the microscopic cutoﬀ parameter. But this is not what we expect of a
+sensible low-energy theory (cf. the discussion of Chapter 1)! The UV problem signals that
+something more interesting is going on than a naive cutoﬀ regularization has the capacity
+to describe. We discuss this point extensively in Chapter 8.
+   However, even if we temporarily close our eyes to the UV-phenomenon, there is another
+problem. For dimensions d ≤ 2, and in the limit r → 0, G0 (0) also diverges at small
+momenta, an infrared (IR) divergence. Being related to structures at large wavelengths,
+this type of singularity should attract our attention even more than the UV-divergence men-
+tioned above. Indeed, it is intimately related to the accumulation of long-range correlations
+in the limit r → 0 (cf. the structure of the integral (5.12)). We come back to the discussion
+of the IR singularities, and their connection to the UV phenomenon, in Chapter 8.
+   The considerations above show that the perturbative analysis of functional integrals will
+be accompanied by all sorts of divergences. Moreover, there is another, less fundamental, but
+also important, point: referring to Eq. (5.16), we have to concede that the expression does
+not look particularly inviting. To emphasize the point, let us consider the core contribution
+to the expansion at second order in g.
+
+  EXERCISE Show that the 10th-order contraction leads to the 945=(10-1)!! terms
+       .                        /
+        φ(x)φ(y)4 φ(y )4 φ(x ) 0 = 9G0 (x − x )G0 (0)4 + 72G0 (x − x )G0 (y − y )2 G0 (0)2
+                                      
+       +24G0 (x − x )G0 (y − y )4 + 36G0 (x − y)G0 (x − y)G0 (0)3
+        +144(G0 (x − y)G0 (x − y)G0 (y − y )2 G0 (0) + G0 (x − y)G0 (x − y )G0 (0)2 G0 (y − y ))
+                                                          
+        +96G0 (x − y)G0 (x − y )G0 (y − y)3 + (y ↔ y ) .                                   (5.18)
+
+  Note: Our further discussion will not rely on this result. It only serves an illustrative purpose.
+
+Clearly Eq. (5.18) is highly opaque. There are eight groups of diﬀerent terms, but it is
+not obvious how to attribute any meaning to these contributions. Further, should we con-
+sider the full second-order Green function G(2) , i.e. take account of the expansion of both
+numerator and denominator in Eq. (5.14), we would ﬁnd that some contributions cancel
+(see Problem 5.5). Clearly, the situation will not improve at third and higher orders in g.
+                               5.1 General structures and low-order expansions                                    203
+
+
+                                                       3              y +12
+                           x      y     x′                 x   x                  x   y    x′
+
+
+Figure 5.1 Graphical representation of a ﬁrst-order-in-g contraction contributing to the expansion
+of the Green function.
+
+
+   To eﬃciently apply perturbative concepts beyond lowest orders, φ (x)                             φ (y)
+                                                                                   x              y
+a more eﬃcient formulation of the expansion is needed. The key
+to the construction of a better language lies in the observation                            〈 〉0
+that our previous notation is full of redundancy, i.e. in the full
+contraction of a perturbative contribution, we represent our ﬁelds
+                                                                                     x           y
+by φ(x). A more compact way of keeping track of the presence                           G0 (x, y)
+of that ﬁeld is shown in the upper portion of the ﬁgure to the
+right. Draw a point (with an optional “x” labeling its position) and attach a little leg to
+it. The leg indicates that the ﬁelds are sociable objects, i.e. they need to ﬁnd a partner
+with which to pair. After the contraction, a pair φ(x)φ(y) → G0 (x − y) becomes a free
+Green function. Graphically, this information can be represented by a pairwise connection
+of the legs of the ﬁeld symbols to lines, where each line is identiﬁed with a Green function
+connecting the two terminating points. The full contraction of a free correlation function
+ φ(x1 )φ(x2 ) · · · φ(x2n ) 0 is represented by the set of all distinct diagrams formed by pairwise
+connection of the ﬁeld vertices.
+   Figure 5.1 shows the graphical representation of the contraction of Eq. (5.16). (The cross
+appearing on the left-hand side represents four ﬁeld operators sitting at the same point y.)
+According to our rule formulated above, each of the two diagrams on the right-hand side
+represents the product of three Green functions, taken between the speciﬁed coordinates.
+Further, each contribution is weighted by a combinatorial factor, i.e. the number of identical
+diagrams of that structure. Consider, for example, the second contribution on the right-
+hand side. It is formed by connecting the “external” ﬁeld vertex at x to any of the legs
+of the internal vertex at y: four possibilities. Next, the vertex at x is connected with one
+of the remaining three unsaturated vertices at y: three possibilities. The last contraction
+y ↔ y is ﬁxed, i.e. we obtain altogether 3 × 4 = 12 equivalent diagrams – “equivalent” in
+that each of these represents the same conﬁguration of Green functions.
+
+    EXERCISE Verify that the graphical representation of the second-order contraction Eq. (5.18)
+    is as shown in Fig. 5.2.6 Associate the diagrams with individual contributions appearing in
+    Eq. (5.18) and try to reproduce the combinatorial factors. (For more details, see Problem 5.5.)
+
+The graphical representation of the contractions shown in Fig. 5.1 and 5.2 provides us with
+suﬃcient background to list some general aspects of the diagrammatic approach:
+
+6
+    In the ﬁgure, the coordinates carried by the ﬁeld vertices have been dropped for notational simplicity. To restore
+    the full information carried by any of these “naked” graphs one attaches coordinates x and x to the external
+    ﬁeld vertices and integration coordinates yi to each of the i nodes that do not connect to an external ﬁeld vertex.
+    Since no information is lost, diagrams are often represented without explicit reference to coordinates.
+204                                   Perturbation theory
+
+
+                                         9                   + 72
+
+
+
+
+                    + 24                + 72                + 288
+
+
+
+
+                   + 192               + 288
+
+
+Figure 5.2 Graphical representation of the second-order correction to the Green function. In the
+main text, the seven types of diagram contributing to the contraction will be referred to (in the
+order they appear above) as diagrams 1 to 7.
+
+
+  Firstly, diagrammatic methods help to eﬃciently represent the perturbative expansion.
+  However, we are still left with the problem (see the discussion above) of computing the
+  analytical expressions corresponding to individual diagrams. To go back from an nth-order
+  graph to its analytical representation one (i) attaches coordinates to all ﬁeld vertices,
+  (ii) identiﬁes lines between points with Green functions, (iii) multiplies the graph by the
+  overall constant g n /n!, and (iv) integrates over all of the internal coordinates. When one
+  encounters expressions like G(n) = “sum of graphs,” the operations (i)–(iv) are implicit.
+  As should be clear from the formulation of our basic rules, there is no ﬁxed rule as to
+  how to represent a diagram. As long as no lines are cut, any kind of reshaping, twisting,
+  rotating, etc. of the diagram leaves its content invariant. (At large orders of perturbation
+  theory, it often takes a second look to identify two diagrams as equivalent.)
+  From the assembly of diagrams contributing to any given order, a number of internal
+  structures common to the series expansion become apparent. For example, looking at the
+  diagrams shown in Fig. 5.2, we notice that some are connected, and some are not. Among
+  the set of connected diagrams (nos. 5, 6, 7) there are some whose “core portion,” i.e.
+  the content of the diagram after the legs connecting to the external vertices have been
+  removed, can be cut into two pieces just by cutting one more line (no. 7). Diagrams of
+  this type are called one-particle reducible while the others are termed one-particle
+  irreducible. More generally, a diagram whose core region can be cut by severing n lines is
+  called n-particle reducible. (For example, no. 6 is three-particle reducible, no. 7 one-
+  particle reducible, etc.) One can also attach a loop order to a diagram, i.e. the number of
+  inequivalent loops formed by segments of Green functions (for Fig. 5.2: 4, 3, 3, 3, 2, 2, 2,
+  in that order). One (correctly) expects that these structures, which are diﬃcult to discern
+  from the equivalent analytical representation, will reﬂect themselves in the mathematics
+  of the perturbative expansion. We return to the discussion of this point below.
+  Then there is the issue of combinatorics. The diagrammatic representation simpliﬁes
+  the determination of the combinatorial factors appearing in the expansion. However, the
+  problem of getting the combinatorics right remains non-trivial. (If you are not impressed
+  with the factors entering the second-order expansion, consider the (14 − 1)!! = 135135
+                            5.1 General structures and low-order expansions                           205
+
+    terms contributing at third order!) In some sub-disciplines of theoretical physics, the art
+    of identifying the full set of combinatorial coeﬃcients at large orders of perturbation
+    theory has been developed to a high degree of sophistication. Indeed, one can set up
+    reﬁned sets of diagrammatic construction rules which to a considerable extent automate
+    the combinatorics. Pedagogical discussions of these rules can be found, for example, in
+    the textbooks by Negele and Orland, and Ryder.7 However, as we will see shortly, the
+    need to explicitly carry out a large-order expansion, with account of all diagrammatic
+    sub-processes, rarely arises in modern condensed matter physics; mostly one is interested
+    in subclasses of diagrams, for which the combinatorics is less problematic. For this reason,
+    the present text does not contain a state-of-the-art exposition of all diagrammatic tools
+    and interested readers are referred to the literature.
+    Finally, and perhaps most importantly, the diagrammatic representation of a given con-
+    tribution to the perturbative expansion often suggests a physical interpretation of the
+    corresponding physical process. (After all, any term contributing to the expansion of a
+    physical observable must correspond to some “real” physical process.) Unfortunately, the
+    φ4 -theory is not well suited to illustrate this aspect, i.e., being void of any dynamical con-
+    tent, it is a little bit too simple. However, the possibility of “reading” individual diagrams
+    will become evident in the next section when we discuss an application to the interacting
+    electron gas.
+
+Above we have introduced the diagrammatic approach on the example of ﬁeld expectation
+values φ(x)(φ(y)4 )n φ(x ) 0 . However, to obtain the Green function to any given order in
+perturbation theory, we need to add to these expressions the contributions emanating from
+the expansion of the denominator of the functional average (cf. Eq. (5.14) and (5.15)).
+While, at ﬁrst sight, the need to keep track of even more terms seems to complicate matters,
+we will see that, in fact, quite the opposite is true! The combined expansion of numerator
+and denominator leads to a miraculous “cancellation mechanism” that greatly simpliﬁes the
+analysis.
+                                        –
+                                    0            0      0
+
+
+
+                                        =3           + 12              –3
+
+
+
+                                        = 12
+
+Figure 5.3 Graphical representation of the ﬁrst-order correction to the Green function: vacuum
+graphs cancel out.
+  Let us exemplify the mechanism of cancellation on G(1) . The three diagrams correspond-
+ing to the contractions of Eq. (5.15) are shown in Fig. 5.3, where integral signs and coordi-
+nates are dropped for simplicity. On the left-hand side of the equation, the brackets · · · 0
+
+7
+    J. W. Negele and H. Orland, Quantum Many Particle Systems (Addison-Wesley, 1988); L. H. Ryder, Quantum
+    Field Theory (Cambridge University Press, 1996).
+206                                              Perturbation theory
+
+indicate that the second contribution comes from the expansion of the denominator. The
+point to be noticed is that the graph produced by the contraction of that term cancels
+against a contribution arising from the numerator. One further observes that the canceled
+graph is of a special type: it contains an interaction vertex that does not connect to any of
+the external vertices. Diagrams with that property are commonly termed vacuum graphs.8
+
+    EXERCISE Construct the diagrammatic representation of G(2) and verify that the expansion of
+    the denominator eliminates all vacuum graphs of the numerator. In particular, show that G(2) is
+    given by the sum of connected diagrams shown in Fig. 5.4. (For more details, see Problem 5.5.)
+
+
+                          G(2) = 192                    + 288                + 288
+
+
+     Figure 5.4 Graphical representation of the second-order contribution to the Green function.
+Indeed, the cancellation of vacuum graphs pertains to higher-order correlation functions
+and to all orders of the expansion:
+
+
+          The contribution to a correlation function C (2n) (x1 , . . . , x2n ) at lth order of
+          perturbation theory is given by the sum of all graphs, excluding vacuum graphs.
+
+For example, the ﬁrst-order expansion of the four-point                            1    2
+           (4)                                                 C (4)(1,2,3,4) = 24
+function C (x1 , . . . x4 ) is shown in the ﬁgure, where coor-
+                                                                                   3    4
+dinates xi ↔ i are abbreviated by indices and “+ perm.”
+stands for the six permutations obtained by interchang-
+ing arguments. In the literature, the statement of vacuum                       1    2
+                                                                     +    12           + perm.
+graph cancellation is sometimes referred to as the linked                       3    4
+cluster theorem. Notice that the linked cluster feature
+takes care of two problems: ﬁrstly we are relieved of the burden of a double expansion of
+numerator and denominator, and secondly only non-vacuum contributions to the expansion
+of the former need to be kept.
+
+    INFO The proof of the linked cluster theorem is straightforward. Consider           a contribution
+                                                                            n .        d 4 n/
+    of nth order to the expansion of the numerator of Eq. (5.14): (−g)   n!
+                                                                                X[φ](  d xφ )   0
+                                                                                                  . The
+    contraction of this expression will lead to a sum of vacuum graphs of pth-order and non-vacuum
+    graphs of (n − p)th-order, where p runs from 0 to n. The pth-order contribution is given by
+                                  0          n−p 1n.v. 2 p 3
+                              1 n
+                                         X[φ]     φ4               φ4       ,
+                             n! p                                         0
+                                                                     0
+
+    where the superscript · · · n.v. indicates that the contraction excludes vacuum graphs and the
+    combinatorial coeﬃcient counts the number of possibilities to choose p vertices φ4 of a total of n
+
+8
+    The term “vacuum graph” has its origin in the diagrammatic methods invented in the 1950s in the context
+    of particle theory. Instead of thermal averages · · · 0 , one considered matrix elements Ω| · · · |Ω taken on the
+    ground state or “vacuum” of the ﬁeld theory. This caused matrix elements Ω|(Sint [φ])n |Ω not containing an
+    external ﬁeld vertex to be dubbed “vacuum graphs.”
+                           5.1 General structures and low-order expansions                                                              207
+
+                          p1    –p1 –p2 –p3                                          p1                    p1
+                                                                  3                       +12
+                          p2        p3                                 p             p2         p      p
+                    p                           –p
+
+
+Figure 5.5 Momentum space representation of a ﬁrst-order contribution to the Green function.
+Internal momenta pi are integrated over.
+
+
+  vertices to form a vacuum graph. Summing over p, we ﬁnd that the expansion of the numerator,
+  split into vacuum and non-vacuum contributions, reads
+                                        0            n−p 1n.v. 2      p 3
+                    ∞  n
+                              (−g)n
+                                          X[φ]    , φ4                , φ4        .
+                    n=0 p=0
+                            (n − p)! p!                                         00
+
+  By a straightforward rearrangement of the summations, this can be rewritten as
+                    
+                    ∞       2                             n 3n.v.       
+                                                                           ∞       2                 p 3
+                      (−g)n                                                  (−g)p
+                                         X[φ]        , φ4                                       , φ4                .
+                    n=0
+                               n!                                 0        p=0
+                                                                                     p!                         0
+
+
+  The p-summation recovers exactly the expansion of the denominator, so we are left with the sum
+  over all non-vacuum contractions.
+
+Before concluding this section, let us discuss one last technical point. The translational
+invariance of the φ4 -action suggests a representation of the theory in reciprocal space.
+Indeed, the momentum space representation of the propagator Eq. (5.11) is much
+simpler than the real space form, and the subsequent analytical evaluation of diagrams will
+be formulated in momentum space anyway (cf. the prototypical expression (5.17)).
+   The diagrammatic formulation of the theory in momentum φ p                                                                           φ–p
+space is straightforward. All we need to do is to slightly adjust             p                                                    –p
+the graphical code. Inspection of Eq. (5.11) shows that the ele-
+                                                                                                                              〈...〉0
+mentary contraction should now be formulated as indicated in the
+ﬁgure. Only ﬁelds with opposite momentum can be contracted;
+the line carries this momenta as a label. Notice that the momen-                                                          p
+tum representation of the ﬁeld vertex φ4 (x) is not given by φ4p .                                                      G0( p)
+Rather, Fourier transformation of the vertex leads to the three-
+fold convolution
+                   
+                                    1 
+                      dd x φ4 (x) → d         φp1 φp2 φp3 φp4 δp1 +p2 +p3 +p4 .
+                                   L p ,...,p
+                                                     1        4
+
+
+The graphical representation of the ﬁrst-order correction to the Green function (i.e. the
+momentum space analog of Fig. 5.3) is shown in Fig. 5.5. It is useful to think about the
+vertices of the momentum-space diagrammatic language in the spirit of “Kirchhoﬀ laws”:
+the sum of all momenta ﬂowing into a vertex is equal to zero. Consequently (exercise) the
+total sum of all momenta “ﬂowing” into a diagram from external ﬁeld vertices must also
+equal zero: φp1 φp2 · · · φpn 0 → δni=1 pi ,0 (· · · ). This fact expresses the conservation of the
+total momentum characteristic for theories with global momentum conservation.
+208                                           Perturbation theory
+
+    EXERCISE Represent the diagrams of the second-order contraction shown in Fig. 5.2 in momen-
+    tum space. Convince yourself that the “Kirchhoﬀ law” suﬃces to ﬁx the result. Observe that the
+    number of summations over internal momenta is equal to the number of loops.
+
+This concludes the ﬁrst part of our introduction to the formal elements of perturbation
+theory. Critical readers will object that, while we undertook some eﬀorts to eﬃciently rep-
+resent the perturbative expansion, we have not in the least addressed the question of how
+interactions will actually modify the results of the free theory. Indeed, we are not yet in
+a position to quantitatively address this problem, the reason being that we ﬁrst need to
+better understand the origin and remedy of the UV/IR divergences observed above.
+   However, temporarily ignoring the presence of this roadblock, let us try to outline what
+kind of information can be extracted from perturbative analyses, in principle. One impor-
+tant point to be noted is that, in condensed matter physics,9 low-order perturbation theory
+is usually not enough to obtain quantitative results. The fact that the “perturbation” cou-
+ples to a macroscopic number of degrees of freedom10 usually necessitates summation of
+inﬁnite (sub)series of a perturbative expansion or even the application of non-perturbative
+methods. This, however, does not mean that the tools developed above are useless: given
+a system subject to unfamiliar interactions, low-order perturbation theory will usually be
+applied as a ﬁrst step to qualitatively explore the situation. For example, a malign diver-
+gence of the expansion in the interaction operator may signal the presence of an instability
+towards the formation of a diﬀerent phase. Or it may turn out that certain contributions to
+the expansion are “physically more relevant” than others. Technically, such contributions
+usually correspond to diagrams of a regular graphical structure. If so, a summation over
+all “relevant processes” may be in reach. In either case, low-order expansions provide vital
+hints as to the appropriate strategy of further analysis. In the following we discuss two
+examples that may help to make these remarks more transparent.
+
+
+                 5.2 Ground state energy of the interacting electron gas
+In Section 2.2 we began to consider the physics of highly mobile electron compounds. We
+argued that such a system can be described in terms of the free particle Hamiltonian (2.18)
+together with the interaction operator (2.19). While we have reviewed the physics of the
+non-interacting system, nothing has hitherto been said about the role of electron–electron
+interactions. Yet by now we have developed enough analytical machinery to begin to address
+this problem. Below we will apply concepts of perturbation theory to estimate the contribu-
+tion of electronic correlations to the ground state energy of a Fermi system. However, before
+plunging into the technicalities of this analysis, it is worthwhile discussing some qualitative
+aspects of the problem.
+
+9
+   There are subdisciplines of physics where the situation is diﬀerent. For example, consider the high-precision
+   scattering experiments of atomic and sub-atomic physics. In these areas, the power of a theory to quantitatively
+   predict the dependence of scattering rates on the strength of the projectile/target interaction (the “perturba-
+   tion”) is a measure of its quality. Such tests involve large-order expansions in the physical coupling parameters.
+10
+    In contrast, low-order expansions in the external perturbation (e.g. experimentally applied electric or magnetic
+    ﬁelds) are usually secure; see Chapter 7.
+                           5.2 Ground state energy of the interacting electron gas                              209
+
+                                             Qualitative aspects
+A principal question that we will need to address is under what physical conditions are
+interactions “weak” (in comparison to the kinetic energy), i.e. when does a perturbative
+approach with the interacting electron system make sense at
+all? To estimate the relative magnitude of the two contributions
+to the energy, let us assume that each electron occupies an aver-
+                                                                                                               rs
+age volume r03 . According to the uncertainty relation, the min-
+imum kinetic energy per particle will be of order O(2 /mr02 ).
+On the other hand, assuming that each particle interacts pre-
+dominantly with its nearest neighbors, the Coulomb energy is
+of order O(e2 /r0 ). The ratio of the two energy scales deﬁnes
+the dimensionless density parameter (see ﬁgure)
+
+                             e2 mr02   r0
+                                     =    ≡ rs ,
+                             r0  2    a0
+
+where a0 = 2 /e2 m denotes the Bohr radius.11 Physically, rs is the radius of the spherical
+volume containing one electron on average; for the Coulomb interaction, the denser the
+electron gas, the smaller rs . We have thus identiﬁed the electron density as the relevant
+parameter controlling the relative strength of electron–electron interactions.
+   Below, we will be concerned with
+the regime of high density, rs  1,       Eugene P. Wigner 1902–95
+or weak Coulomb interaction. In the       Nobel Laureate in Physics in 1963
+opposite limit, rs  1, properties        “for his contributions to the the-
+                                          ory of the atomic nucleus and the
+become increasingly dominated by          elementary particles, particularly
+electronic correlations. Ultimately,      through the discovery and appli-
+for suﬃciently large rs (low density)     cation of fundamental symmetry
+                                          principles.” (Image c The Nobel
+it is believed that the electron gas      Foundation.)
+undergoes a (ﬁrst order) transition
+to a condensed phase known as a Wigner crystal. Although Wigner crystals have never
+been unambiguously observed, several experiments performed on low-density electron gases
+are consistent with a Wigner crystal ground state. Monte Carlo simulation suggests that
+Wigner crystallization may occur for densities with rs > 35 in the two-dimensional electron
+gas and rs > 106 in three.12 (Note that this scenario relies on being at low temperature,
+
+11
+     Notice that the estimate of the relative magnitude of energy scales mimics Bohr’s famous qualitative discussion
+     of the average size of the hydrogen atom.
+12
+     With the earliest reference to electron crystallization appearing in E. Wigner, On the interaction of electrons
+     in metals, Phys. Rev. 46 (1934), 1002–11, a discussion of the results of quantum Monte Carlo simulations in
+     three-dimensions can be found in the following papers: D. M. Ceperley and B. J. Alder, Ground state of the
+     electron gas by a stochastic method, Phys. Rev. Lett. 45 (1980), 566–569 and N. D. Drummond, Z. Radnai, J.
+     R. Train, M. D. Towler, and R. J. Needs, Diﬀusion quantum Monte Carlo study of three-dimensional Wigner
+     crystals, Phys. Rev. B 69 (2004), 085116, and in two-dimensions in B. Tanatar and D. M. Ceperley, Ground
+     state of the two-dimensional electron gas, Phys. Rev. B 39 (1989) 5005-5016. For a further discussion of the
+     subtleties of the transition in two-dimensions, we refer to B. Spivak and S. A. Kivelson, Phases intermediate
+     between a two-dimensional electron liquid and Wigner crystal, Phys. Rev. B 70 (2004), 155114.
+210                                         Perturbation theory
+
+                      Table 5.1 Density parameters of a number of metals.
+
+                     Metal       rs    Metal      rs     Metal     rs      Metal     rs
+
+                     Li          3.2   Be         1.9    Na        3.9     Al        2.1
+                     K           4.9   Sn         2.2    Cu        2.7     Pb        2.3
+
+                     Source: Data taken from Ashcroft and Mermin, Solid State
+                     Physics.a
+                      a
+                          N. W. Ashcroft and N. D. Mermin, Solid State Physics (Holt-
+                          Saunders International, 1983).
+
+
+
+and on the long-range nature of the Coulomb interaction. In particular, if the Coulomb
+interaction is subject to some screening mechanism, V (r) ∼ e−r/λ , rs ∼ (r0 /a0 )e−r0 /λ , and
+the inﬂuence of Coulomb interaction at low densities becomes diminished.)
+   For rs ∼ O(1), the potential and kinetic energies are comparable. This regime of inter-
+mediate coupling is notoriously diﬃcult to describe quantitatively. Yet most metals lie in a
+regime of intermediate coupling 2 < rs < 6 (see Table 5.1). Fortunately, there is overwhelm-
+ing evidence to suggest that a weak coupling description holds even well outside the regime
+over which the microscopic theory can be justiﬁed. The phenomenology of the intermediate
+coupling regime is the realm of Landau’s Fermi liquid Theory.13
+   The fundamental principle under-
+lying the Fermi liquid theory is                   Lev D. Landau 1908–68
+one of “adiabatic continuity”:14 in                Nobel Laureate in Physics in 1962
+the absence of an electronic phase                 “for his pioneering theories for
+                                                   condensed matter, especially liq-
+transition (such as Wigner crystal-                uid helium.” Landau’s work covers
+lization), a non-interacting ground                all branches of theoretical physics,
+state evolves smoothly or adiabat-                 ranging from ﬂuid mechanics to
+                                                   quantum ﬁeld theory. A large por-
+ically into the interacting ground                 tion of his papers refer to the theory of the con-
+state as the strength of interaction               densed state. They started in 1936 with a formu-
+is increased.15 An elementary exci-                lation of a general thermodynamical theory of the
+                                                   phase transitions of the second order. After P.L.
+tation of the non-interacting system               Kapitsa’s discovery, in 1938, of the superﬂuidity
+represents an “approximate excita-                 of liquid helium, Landau began extensive research
+tion” of the interacting system (i.e.              which led him to the construction of the complete
+its “lifetime” is long). Excitations               theory of the “quantum liquids” at very low temper-
+                                                   atures. (Image c The Nobel Foundation.)
+are quasi-particles (and quasi-holes)
+above a sharply deﬁned Fermi surface.
+
+13
+   L. D. Landau, The theory of a Fermi liquid, Sov. Phys. JETP 3 (1956), 920.
+14
+   P. W. Anderson, Basic Notions in Condensed Matter Physics (Benjamin, 1984).
+15
+                            As a simple non-interacting example, consider the adiabatic evolution of the bound
+                            states of a quantum particle as the conﬁning potential is changed from a box to a
+                            harmonic potential well (see ﬁgure). While the wavefunctions and energies evolve,
+                            the topological characteristics of the wavefunctions, i.e. the number of the nodes,
+                            and therefore the assignment of the corresponding quantum numbers, remain
+                            unchanged.
+                              5.2 Ground state energy of the interacting electron gas                        211
+
+   The starting point of Fermi liquid theory is a few phenomenological assumptions, all
+rooted in the adiabaticity principle. For example, it is postulated that the density of quasi-
+particles can be described in terms of a momentum-dependent density distribution n(p)
+which, in the limit of zero interaction, evolves into the familiar Fermi distribution. From
+this assumption (and a few more postulates) a broad spectrum of observables can be ana-
+lyzed without further “microscopic” calculation. Its remarkable success (as well as the few
+notorious failures) has made Landau Fermi liquid theory a powerful tool in the development
+of modern condensed matter physics but one which we are not going to explore in detail.16
+Instead, motivated in part by the phenomenological success of the “adiabatic continuity,”
+we will continue with the development of a microscopic theory of the weakly interacting
+three-dimensional electron gas, with rs  1.
+
+
+
+                                            Perturbative approach
+The starting point of the perturbative analysis is the functional representation of the free
+energy F = −T ln Z through the quantum partition function. (Here, as usual, we set kB =
+1.) Expressed as a coherent state path integral, Z = D(ψ̄, ψ) e−S[ψ̄,ψ] , where
+
+                                           
+                                       p2            T 
+        S[ψ, ψ̄] =         ψ̄pσ −iωn +    − μ ψpσ +       ψ̄p+qσ ψ̄p −qσ V (q)ψp σ ψpσ .
+                         p
+                                       2m           2L3 
+                                                                         pp q
+
+
+Here, for brevity, we have introduced the “4-momentum” p ≡ (p, ωn ) comprising both
+frequency and momentum.17 As with the Green function discussed in the previous section,
+the free energy can be expanded in terms of an interaction parameter. To ﬁx a reference
+scale against which to compare the correlation energies, let us begin by computing the free
+energy Eq. (4.41) of the non-interacting electron gas:
+                                                                                       
+                                         −β(p2 /2m−μ)       T →0                    p2             2
+        F   (0)
+                  = −T        ln 1 + e                      −→                         −μ       ≃ − N μ,   (5.19)
+                         pσ
+                                                                                    2m             5
+                                                                   p2 /2m<μ,σ
+
+
+where μ ≡ p2F /2m, N = (23/2 /3π 2 )m3/2 L3 μ3/2 is the number of particles, and the last
+estimate is obtained by replacing the sum over momenta by an integral. According to
+Eq. (5.19), the average kinetic energy per particle is equal to 3/5 of the Fermi energy. To
+relate this scale to the density parameter rs , we choose to measure all energies in units of
+the Rydberg energy (alias the ionization energy of hydrogen), ERy = me4 /22 = 13.6 eV,
+
+                                                    F (0)  N
+                                                          ∼ 2.                                             (5.20)
+                                                    ERy    rs
+
+
+16
+     Interested readers are referred to one of several excellent reviews, e.g. P. W. Anderson, Basic Notions in
+     Condensed Matter Physics (Benjamin, 1984).
+17
+     Notice that “4-momentum” p and the modulus of the “3-momentum”, p = |p|, are denoted by the same symbol
+     (standard notation!). However, in its context, this should not cause confusion.
+212                                           Perturbation theory
+
+  If we turn now to the discussion of interactions, a formal expansion of F to ﬁrst order in
+V gives
+                                 B                                     C
+                      (1)    T2 
+                     F =               ψ̄p+qσ ψ̄p −qσ V (q)ψp σ ψpσ ,             (5.21)
+                            2L3             pp q                                    0
+
+where · · · 0 denotes the functional average with respect to the non-interacting action. The
+two18 diagrams contributing to this expression are shown in the ﬁgure overleaf. To account
+for the speciﬁcs of the electron gas, we are using a diagrammatic code slightly diﬀerent from
+that of the previous section:
+
+     The Coulomb interaction is represented by a wavy line labeled by the momentum argu-
+     ment q.
+     A contraction ψpσ ψ̄pσ 0 is indicated by a solid arrow representing the free Green func-
+     tion of the electron gas,
+                                                     1
+                                       Gp ≡            p2
+                                                              ,                         (5.22)
+                                             −iωn + 2m    −μ
+     i.e. the inverse of the free action. The labeling of the contraction by an arrow (instead
+     of a unidirectional line as in φ4 -theory) is motivated by two considerations: ﬁrstly, the
+     mnemonic has the eﬀect of indicating that a contraction ψη ψ̄λ 0 describing the creation
+     of an electron with quantum numbers λ, followed by the annihilation of an electron at η,
+     is a directed process; secondly, there are situations (e.g. when a magnetic ﬁeld is present)
+     where ψnσ (r)ψ̄nσ (r ) 0 = ψnσ (r )ψ̄nσ (r) 0 .
+     The sum of all 4-momenta emanating from an interaction vertex formed by a wavy line
+     and two electron ﬁeld lines is equal to zero (exercise) – the “Kirchhoﬀ law.”
+     Finally, we have to be careful about sign factors arising when Grassmann variables are
+     interchanged. However, the anti-commutativity of the ﬁelds merely leads to an overall
+     factor (−)Nl , where Nl is the number of loops of a diagram. (To verify this claim, one may
+     notice that a loop is formed by a “ringwise contraction” ψ̄1 ψ2 ψ̄3 . . . ψN 0 , (2 → 3)(4 →
+     5) . . . ((N − 2) → (N − 1))(N → 1). The last contraction introduces the minus sign.)
+
+                                       First-order perturbation theory
+Turning to the discussion of the speciﬁc diagrams shown in the ﬁgure below, we notice
+that the ﬁrst, generally known as a Hartree contribution, vanishes. Technically, this is a
+                                                       consequence of the fact that the
+  Douglas R. Hartree, 1897–1958                        interaction line connecting the two
+  Originally appointed as a professor of applied math-
+  ematics he became one of the ﬁrst “computational
+                                                       loops carries zero momentum. How-
+  physicists.” He developed methods for numerically    ever, as discussed in Section 2.2,
+  solving the Schrödinger equation, among them the    V (q = 0) = 0. Physically, the van-
+  celebrated “Hartree approximation.”                  ishing of the Hartree contribution is
+                                                       a consequence of charge neutrality.
+
+18
+     Remember that, in a theory with complex or Grassmann ﬁelds, only contractions ∼ ψ̄ψ0 exist, i.e. there is a
+     total of n! distinct contributions to a contraction ψ̄ψ . . . ψ0 of 2n ﬁeld operators.
+                         5.2 Ground state energy of the interacting electron gas                  213
+                                                  
+Indeed, the two Green function loops        p Gp measure the local particle density of the
+electron gas (cf. the discussion on page 171). Global charge neutrality requires that the
+electronic density cancels against the density of the ionic background. However, notice that
+this cancellation mechanism relies on our assumption of overall spatial homogeneity.
+Only in a spatially uniform system does the density of the
+electron gas locally compensate the positive counter-density.
+In realistic metals, the inevitable presence of impurities breaks                         q=0
+translational invariance and there is no reason for the Hartree                       p                 p
+contribution to vanish. Indeed, the analysis of Hartree-type
+contributions to the correlation energy in disordered electronic
+media is a subject of ongoing research.                                                   p+q
+   While the Hartree term describes the classical interaction
+of charge densities through the Coulomb potential, the second                              q
+diagram shown in the ﬁgure, known as a Fock contribution,                                  p
+is quantum. Translating the diagrammatic language back into
+Green functions, we obtain
+
+                                              T2 
+                           F (1)    =     −        Gp Gp V (p − p )
+                                              L3 
+                                                 p,p
+
+                                            1                        e2
+                                    =     − 3    nF (p )nF (p )
+                                           L   
+                                                                   |p − p |2
+                                                 p,p
+
+                                   T →0       1           e2         e2 L3 p4F
+                                    =     −                   
+                                                                   =−           .               (5.23)
+                                              L  , <μ |p − p |
+                                               3                 2     (2π)4
+                                                  p    p
+
+
+
+Here, the sign factor in the ﬁrst equality is due to the odd number of fermion loops, and the
+evaluation of the last sum, which can be found, for example, in the text by Kittel,19 is left
+as an exercise. (Up to numerical factors, the result follows from dimensional considerations.
+We are integrating the inverse square of the distance in momentum space ([momentum]−2 )
+over two Fermi spheres ([momentum]6 ). Since the integral is convergent at low momenta, it
+must scale as the fourth power of the upper cutoﬀ ∼ p4F .)           Γ(x)
+                                                                     4
+Division by the Rydberg energy leads to the scaling
+                                                                     3
+                        F (1)           N
+                              = const. · ,                  (5.24)   2
+                        ERy             rs
+                                                                     1
+where the constant is of order unity. This result con-
+                                                                                                        x
+forms with our previous estimate of the density depen-                          0.5         1     1.5
+dence of correlation energies.
+
+
+19
+     C. Kittel, Quantum Theory of Solids (Wiley, 1963).
+214                                            Perturbation theory
+
+     INFO A closer analysis shows that other predictions following from Eq. (5.23) are less sensible.
+     To understand what goes wrong, let us rewrite the sum of F (0) and F (1) as
+                                       ⎛                              ⎞
+                                        p 2
+                                                     1          e 2
+                      (0)
+                    F +F    (1)
+                                =      ⎝     −μ− 3                    ⎠.
+                                         2m         L  <μ |p − p |2
+                                         |p|<pF                      p
+
+
+     This way of writing suggests that the interaction of an electron of momentum p with all partner
+     electrons of momentum p leads to a reduction20 of the single particle energy by an amount
+          
+     L−3   <μ e2 /|p − p |2 .
+             p
+       Evaluation of the internal sum (exercise) leads to21
+                                             p2           e2 pF
+                                                                            
+                           F (0) + F (1) =            −μ−         Γ(|p|/pF ) ,
+                                                  2m         2π
+                                               |p|<pF
+                                                 
+                                       2     1+x 
+     where the function Γ(x) = 2 + 1−x
+                                     x
+                                         ln  1−x  is shown in the ﬁgure. The most important charac-
+     teristic of the scaling function Γ is a logarithmically diverging derivative at x = 1 (exercise). To
+     appreciate the consequences of this feature, let us consider the single particle density of states
+                                        p2     2
+     ρ() = pσ δ( − p ), where p = 2m     − e 2π
+                                                  pF
+                                                     Γ(p/pF ) is the ﬁrst-order Fock single-particle energy.
+     Approximating the sum by an integral, we obtain
+                                                                            −1
+                                      L3 ∞ 2                       L3 p2 dp
+                               ρ() = 2        p dp δ( − p ) =                  ,
+                                      π 0                           π2     dp
+     where p is deﬁned through p = . The singularity of the derivative of Γ(p/pF ) at p = pF
+     implies that the density of states is predicted to vanish as  approaches the Fermi energy, clearly
+     a nonsensical result.22 The origin of this pathological divergence can be traced back to the long-
+     range (|r|−1 → |q|−2 ) decay of the Coulomb potential (cf. Eq. (5.21)). Yet we know that, in
+     systems with mobile charge carriers, electrostatic forces are screened, i.e. they decay exponen-
+     tially. Microscopically, screening is due to the polarization of a medium in response to an applied
+     electric ﬁeld. This by itself is an interaction eﬀect, albeit one of “higher order” in the Coulomb
+     interaction, i.e. if we ever want to observe signatures of the screening mechanism, we need to
+     advance to higher orders in the expansion in V .
+
+
+                                     Second-order perturbation theory
+Let us then consider the second-order contribution
+                                     ⎛                                     ⎞2 Cc
+                               2 B 
+                        T    T       ⎝
+              F (2) = −                   ψ̄p+qσ ψ̄p −qσ V (q)ψp σ ψpσ ⎠ ,
+                        2 2L3                     pp q
+                                                                                                0
+
+where the superscript indicates that only connected diagrams contribute.
+
+20
+   Why a reduction? Charge neutrality implies that the classical correlation energy vanishes. However, being
+   fermionic in nature, electrons tend to avoid each other even more than classical particles, i.e. quantum statistics
+   leads to a lowering of the correlation energy below the classical value of zero.
+21
+   See, e.g., J. Hubbard, The description of collective motion in terms of many-body perturbation theory, Proc.
+   Roy. Soc. (London) A243 (1957), 336.
+22
+   The majority of transport observables in metals are proportional to the density of states at the Fermi energy,
+   i.e. ρ(μ) = 0 would entail the vanishing of almost all transport coeﬃcients!
+                           5.2 Ground state energy of the interacting electron gas                                215
+
+     EXERCISE Using the ﬁeld integral representation of Z, show that second-order
+                                                                              (.        expansion of
+                                                                                    /              2 )
+     F = −T ln Z in the interaction operator Sint leads to F (2) = −(T /2) Sint   2
+                                                                                      0
+                                                                                        −   Sint 0 .
+     Convince yourself that the second term cancels disconnected diagrams. Apply arguments similar
+     to those involved in the proof of the linked cluster theorem to verify that the cancellation of
+     disconnected graphs pertains to all orders in the expansion of F . I.e. the free energy can be
+     obtained by expanding the partition function Z (not its logarithm) and keeping only connected
+     diagrams; dropping disconnected contributions is equivalent to taking the logarithm.
+
+Connected contraction of the eight ﬁeld operators leads to four distinct types of diagram
+(exercise) of which two are of Hartree type (i.e. contain a zero-momentum interaction line
+V (q = 0)). The non-vanishing diagrams F (2),1 and F (2),2 are shown in the ﬁgure below.23
+Translating these diagrams to momentum summations over Green functions, one obtains
+(exercise)
+
+                                         T3 
+                     F (2),1    =    −             Gp Gp +q Gp2 Gp2 +q V (q)2 ,
+                                         L6 p ,p ,q 1 1
+                                             1       2
+
+                                     1 T3 
+                     F (2),2    =                Gp Gp−q1 Gp−q1 −q2 Gp−q2 V (q1 )V (q2 ).                      (5.25)
+                                     2 L6 p,q ,q
+                                                 1       2
+
+
+While, at ﬁrst sight, these expressions do not look very illuminating, closer inspection reveals
+some structure. Reﬂecting the fact that electronic transport in solids is carried by excitations
+at the Fermi energy, the electron Green function (5.22) assumes large values for momenta
+p ≃ pF . This implies that only conﬁgurations where all momentum arguments carried by the
+Green function are close to the Fermi surface contributes signiﬁcantly to the sums (5.25).
+Considering the ﬁrst sum, we see that, for small |q| and |pi | ≃ pF , this condition is met,
+i.e. there are two unbound summations over momentum shells around the Fermi surface.
+However, with the second sum, the situation is less favourable. For ﬁxed |p1 | ≃ pF , ﬁne-
+tuning of both q1 and q2 is necessary to bring all momenta close to pF , i.e. eﬀectively one
+momentum summation is frozen out. There is no need to enter into detailed calculations to
+predict that, due to the relatively larger “phase volume,” F (2),1 /F (2),2  1, where the ratio
+will be proportional to the area of the Fermi surface which, in turn, is proportional to the
+density of the electron gas. For large densities, the second Fock diagram can be neglected
+in comparison with the ﬁrst.
+
+
+
+
+23
+     In fact, one more non-vanishing contribution is obtained by drawing a single “ring” of Green functions contain-
+     ing two non-crossing interaction lines. This diagram, and its obvious generalization to higher order processes
+     containing sequential “self–interactions” of a single Green function do not play an essential role (in the present
+     context.) The reasons why will become clear in section 5.3 when we introduce the notion of self-energies.
+216                                            Perturbation theory
+
+
+
+
+                                   (a)                          (b)
+
+
+Figure 5.6 Diagram of second-order Fock contributions to the free energy of the electron gas.
+(a) Interaction process involving a single electron–hole pair. An electron is virtually excited
+above the Fermi energy, and subsequently recombines with a hole state left behind by a second
+electron excitation which then jumps into the hole created by the initial excitation. (b) Virtual
+excitation of independent electron–hole pairs.
+
+
+  Of course, there must be a ‘more physical’ way of under-
+standing this observation. The Green function lines in the
+diagrams F (2),i describe the propagation of quasi-particles F (2),1
+and quasi-holes24 on the background of the interacting
+medium. Now, the diagram F (2),2 contains a simply con-
+nected propagator line: a single particle–hole excitation
+undergoes a second-order interaction process with itself
+(see Fig. 5.6(a)). By contrast, the ﬁrst diagram F (2),1
+                                                               (2),2
+involves two independent electron–hole excitations, as F
+shown in Fig. 5.6(b). Since, in a dense electron gas, a
+second-order interaction process will more likely involve
+diﬀerent particles, this type of contribution is more important. Notice that the process
+shown in Fig. 5.6(b) can be interpreted as a “polarization” of the medium due to the
+excitation of electron–hole pairs.
+
+                                    Higher orders in perturbation theory
+The picture above readily generalizes to interaction processes of higher order. In the high-
+density limit, dominant contributions to the free energy should contain one free integration
+over the Fermi momentum per interaction process. A moment’s
+thought shows that only diagrams of “ring graph” structure (see the
+ﬁgure) meet this condition. Expanding the free energy functional to
+nth order in the interaction operator, and retaining only diagrams
+of that structure, one obtains
+                               6                    7n
+              (n)       T  2T            
+             FRPA = −               V (q)   Gp Gp+q    .     (5.26)
+                       2n q      L3       p
+
+(To understand the origin of the multiplicative factor 1/n, notice
+that F (n) results from the connected contraction of an operator ∼
+
+24
+     In principle, the system consists of physical electrons immersed into a globally positive background. However
+     (cf. the discussion of Section 2.2), keeping in mind that at low temperatures dynamical processes take place in
+     the immediate vicinity of the Fermi surface, a more problem-oriented way of thinking about states is in terms
+     of quasi-particles and quasi-holes, i.e. electronic states immediately above and below the Fermi surface.
+                         5.2 Ground state energy of the interacting electron gas                             217
+
+(n!)−1 (Sint [ψ̄, ψ])n c0 . There are (n−1)! diﬀerent ways of arranging the interaction operators
+Sint in a ring-shaped structure, i.e. the diagram carries a global factor (n − 1)!/n! = 1/n.)
+  In Eq. (5.26) the subscript “RPA” stands for random phase approximation.25 How-
+ever, more important than the designation are the facts: (a) we have managed to identify
+a particularly relevant subclass of diagrams contributing to the plethora of interaction pro-
+cesses; (b) there is a physical parameter controlling the dominance of these diagrams; and
+(c) we are apparently able to sum up the entire series of nth-order RPA-interaction contri-
+butions. Indeed, summation over n leads to the simple result
+                                      (n)       T 
+                             FRPA ≡      FRPA =        ln (1 − V (q)Πq ) ,                 (5.27)
+                                       n
+                                                  2 q
+
+where we have introduced the polarization operator,26
+
+                                                   2T 
+                                           Πq ≡         Gp Gp+q .                                         (5.28)
+                                                   L3 p
+
+Equation (5.27) represents our ﬁrst example of an inﬁnite-order expansion. However, before
+turning to the discussion of further aspects of inﬁnite-order perturbation theory, let us stay
+for a moment with the RPA free energy. Speciﬁcally, let us investigate whether the RPA
+repairs the pathology in the Fermi surface density of states observed above.
+  The last unknown we need to compute before turning to the discussion of the RPA free
+energy is the polarization operator. Drawing on the frequency summation in Problem 4.5,
+the polarization operator can be written explicitly as
+              2T         1             1             2  nF (p+q ) − nF (p )
+        Πq = 3                                    = 3                           .       (5.29)
+              L p −iωn + ξp −iωn+m + ξp+q            L p iωm + ξp+q − ξp
+
+The evaluation of the momentum sum is straightforward if a bit tedious. As a result of the
+calculation outlined in the Info block below one obtains
+                                                                
+                                            iωm        iωm + vF q
+                         Πq,ωm = −ν0 1 −          ln                ,               (5.30)
+                                            2vF q      iωm − vF q
+
+where
+                                                          
+                             1                                 d3 p            mpF
+                        ν0 ≡ d    δ(μ − p ) = 2                     δ(p − μ) = 2 ,                      (5.31)
+                            L p,σ                              (2π)3             π
+
+25
+   The attribute “random phase” seems to allude to the fact that the quantum mechanical phase carried by the
+   particle–hole excitations stirred up by interactions gets lost after each elementary polarization process. This
+   contrasts with more-generic contributions to F where quantum phases may survive more complex interaction
+   processes. Also notice that more than one approximation scheme in statistical physics has been dubbed “random
+   phase.”
+26
+   The deﬁnition (5.28) applies to the speciﬁc case of a three-dimensional translationally invariant system. More
+   generally, the polarization operator is deﬁned as the frequency/momentum Fourier transform of the connected
+   average
+                                                                      
+                                     ψ̄(x, τ )ψ(x, τ )ψ̄(x , τ )ψ(x , τ )c .
+218                                            Perturbation theory
+
+is the density of states per volume of non-interacting electrons at the Fermi surface.
+     INFO For an isotropic three-dimensional system at zero temperature, the polarization operator
+     (5.29) becomes a function of |q| and ωn , known as the Lindhard function. The evaluation
+     of the momentum sum is greatly simpliﬁed by noting that, due to the diﬀerence of the Fermi
+     functions, only momenta with |p| ≃ pF signiﬁcantly contribute. Assuming that |q|                   pF , we may
+     thus eﬀect the linearization ξp+q − ξp = (1/m)p · q + O(q 2 ), where the term of O(q 2 ) is negligibly
+     small. Similarly, nF (p+q ) − nF (p ) ≃ ∂p nF (p )(1/m)p · q ≃ −δ(p − μ)(1/m)p · q, where, in the
+     zero-temperature limit, the last equality becomes exact. Converting the momentum sum into an
+     integral, we thus obtain
+                                                
+                                                      d3 p
+                                                                            1
+                                                                               p·q
+                                Πq,ωm = −2                  δ(p − μ)       m
+                                                                                        .
+                                                     (2π) 3
+                                                                       iωm + m   1
+                                                                                   p·q
+                                                                     
+     Setting 1/(2π)3 d3 p = 1/(2π)3 dp p2 dΩ, where                        dΩ is the integral over the three-
+     dimensional unit sphere, and p = pn, with |n| = 1, the integral can be evaluated, thus:
+                                                  
+                                    2                                      vF n · q
+                Πq,ωm = −                   dp p 2
+                                                       dΩ δ(p − μ)
+                                 (2π)3                                iωm + vF n · q
+                                                                            
+                                    2                                    1              vF n · q
+                          = −               dp p 2
+                                                       dΩ  δ( p − μ)           dΩ
+                                  (2π)3                                  dΩ          iωm + vF n · q
+                                                                 
+                                                  ν0
+                                                                                                  
+                                 ν0 1              vF xq                      iωm         iωm + vF q
+                          = −            dx                    = −ν0 1 −            ln                  .
+                                  2 −1        iωm + vF xq                     2vF q       iωm − vF q
+
+To obtain the free energy, we need
+to substitute the Lindhard func-        Murray Gell-Mann 1929–
+tion into Eq. (5.27) and sum over       Nobel Laureate in Physics in 1969
+q = {q, ωm }. Yet, due to the com-      “for his contributions and discov-
+                                        eries concerning the classiﬁcation
+plicated dependence of the function     of elementary particles and their
+Πq,ωm on its arguments, this ﬁnal       interactions.” Among his many
+part of the calculation is far from     accomplishments, he formulated
+                                        the quark model of hadronic res-
+trivial. An asymptotic expression       onances, and identiﬁed the SU(3) ﬂavor symme-
+for the high-density expansion of       try of the light quarks, extending isospin to include
+the RPA approximation to F was          strangeness, which he also discovered. (Image c
+                                        The Nobel Foundation.)
+ﬁrst obtained in a famous study by
+                          27
+Gell-Mann and Brueckner. Measuring in atomic units, they obtained the free energy per
+particle of
+                              FRPA
+                                    = −0.142 + 0.0622 ln rs .                             (5.32)
+                             ERy N
+For a derivation of this result we refer the interested reader to the literature. (In the late
+1950s, motivated largely by applications to the physics of heavy nuclei, the perturbative
+calculation of ground state energies had become an industry. A comprehensive discussion of
+
+27
+     M. Gell-Mann and K. Brueckner, Correlation energy of an electron gas at high density, Phys. Rev. 106 (1957),
+     364–8. To explore this and related literature, it is useful to refer to D. Pines, The Many-Body Problem (Ben-
+     jamin, 1962) where the important reprints are collected.
+                           5.2 Ground state energy of the interacting electron gas                                219
+
+the subject, and details of the asymptotic rs - expansion of FRPA can be found, for example,
+in Mahan.28 ) When added to the kinetic energy Eq. (5.20) and the ﬁrst-order correlation
+energy Eq. (5.24), the structure of the density expansion of the free energy becomes clear:
+the sum over all RPA diagrams yields the coeﬃcient of O(rs0 ) in the expansion in rs .29
+   More important for our present discussion is the conceptual meaning of the RPA, notably
+the connection to screening. To this end, let us temporarily consider the expectation value
+of the particle number N = −∂μ F , rather than the free energy itself. Speciﬁcally, we wish
+to compare the ﬁrst order correction (with the non-interacting result) N (1) = −∂μ F to the
+RPA, NRPA = −∂μ FRPA . Noting that ∂μ Gp = −(Gp )2 we readily ﬁnd (cf. Eq. (5.23))
+                                                   2T 2 
+                                      N (1) = −            (Gp )2 Gp+q V (q).
+                                                    L3 p,q
+
+After a second diﬀerentiation, ρ(1) = ∂μ N (1) , this expression would lead to the pathological
+density of states, a consequence of the unscreened interaction line. (The diagrammatic
+visualization of N (1) is shown in Fig. 5.7(a).) Now, consider the μ-derivative of FRPA ,
+Eq. (5.27):
+
+               T  V (q)∂μ Πq    T2    V (q)    
+     NRPA =                    =− 3                Gp+q (Gp )2 + (q ↔ −q)
+               2 q 1 − V (q)Πq   L q 1 − V (q)Πq p
+                  2T 2    V (q)                        2T 2           
+            =−                        G p+q (G p ) 2
+                                                     = −        V eﬀ (q)   Gp+q (Gp )2 , (5.33)
+                   L3 q 1 − V (q)Πq p                     L3 q           p
+
+where we have deﬁned the “eﬀective” interaction
+                                                          1        V (q)
+                                       Veﬀ (q) ≡                 ≡       ,                                     (5.34)
+                                                    V (q)−1 − Πq   (q)
+with the generalized dielectric function
+
+                                                (q) ≡ 1 − V (q)Πq .                                           (5.35)
+
+   Structurally, the expression for NRPA resembles the ﬁrst-order expression N (1) , only with
+the “bare” Coulomb interaction replaced by the eﬀective interaction Veﬀ . From its deﬁnition,
+it is clear that Veﬀ represents a geometric series over polarization bubbles, augmented by
+bare interaction lines. This is visualized in Fig. 5.7(b), where the fat line is deﬁned in the
+bottom part of the ﬁgure. In fact, we do not need to stare at the analytical expression
+(5.33) to understand its origin. The μ-diﬀerentiation acting on FRPA may pick any of the
+                           (n)
+n rings contributing to FRPA in Eq. (5.26). The “diﬀerentiated ring” becomes the bubble
+in Fig. 5.7, while all other rings conspire to form the (n − 1)th-order contribution to the
+eﬀective interaction line.
+
+28
+     G. Mahan, Many Particle Physics (Plenum Press, 1981).
+29
+     Here we follow a convention (used mostly in the older literature) where the RPA starts from the second-order
+     ring diagram F (2),1 . However, henceforth we will refer to the “RPA” as the sum over all ring diagrams, including
+     the ﬁrst, F (1) .
+220                                       Perturbation theory
+
+                     p+q                    p+q
+
+                      q                        q
+                      p                        p
+
+                      (a)                      (b)
+
+
+                        =         +                  +                           + ...
+
+
+                        =         +
+
+
+Figure 5.7 Diagrammatic visualization of expectation value of the particle number. (a) First-order
+Fock correction and (b) the RPA approximation, where the deﬁnition of the RPA interaction line
+is shown in the bottom part of the ﬁgure.
+
+
+   At this stage, the connection between RPA and the collective electromagnetic response
+of the charged system becomes discernible. We remember that the electric ﬁeld E in a
+medium is related to the vacuum ﬁeld D through the relation D(q, ω) = (q, ω)E(q, ω),
+where the dielectric function (q, ω) = 1+4πχ(q, ω) is determined by the electromagnetic
+susceptibility, i.e. a function that measures the tendency of the medium to “respond”
+or adjust to an external electromagnetic perturbation. Identifying E(D) with the gradient
+of the “dressed” potential Veﬀ (the “bare” potential V ), we conclude that, on the level of
+the microscopic theory, 4πχ(q, ω) = −V (q)Πq,ωn , i.e. the susceptibility is proportional to
+the polarization operator Πq . These connections motivate the introduction of the dielectric
+function as in Eq. (5.35) above.
+   The full complexity of the polarization of the dense homogeneous electron gas is encoded
+by the Lindhard function (5.30). However, there are some interesting limiting cases, where
+the situation simpliﬁes. Inspection of Eq. (5.30) shows that the Lindhard function depends
+on the dimensionless ratio between two characteristic length scales: the “wavelength” q −1 ,
+and the distance vF /ω an excitation propagating with Fermi velocity travels during the time
+ω −1 . For small frequencies, vF /ω  q −1 , the electron gas has enough time to optimally
+adjust to the spatial variation ∼ q −1 of the potential, i.e. to screen out electro-neutrality
+                                                                                 ωqvF
+violating potential ﬂuctuations. In this static limit, we may expand Πq,ωm = −ν0 +
+O(ω/vF q). In this case, the electron gas interacts through the eﬀective potential,
+
+                             ωqvF         1                  4πe2          4πe2
+                   Veﬀ (q)    =                      =                 ≡           ,
+                                      V (q)−1 + ν0       q 2 + 4πe2 ν0   q 2 + λ−2
+                                 −1/2
+where the constant λ ≡ 4πe2 ν0           is known as the Thomas–Fermi screening length.
+Indeed, it is straightforward to verify that the inverse Fourier transform leads to an eﬀective
+interaction potential
+
+                                                          −|r|/λ
+                                          Veﬀ (r) = e2 e |r| ,                             (5.36)
+
+
+i.e. the potential is exponentially supressed, or screened, on length scales |r| > λ.
+                      5.2 Ground state energy of the interacting electron gas                       221
+
+  EXERCISE To verify Eq. (5.36), introduce polar coordinates q = (q, θ, φ) in q-space and per-
+  form ﬁrst the elementary integrations over φ and θ. It is then straightforward to complete the
+  remaining q-integration over the radial coordinate by analogy to the contour integral (5.13).
+
+  INFO Let us brieﬂy recapitulate the heuristic interpretation of Thomas–Fermi screening.
+  Imagine a test charge e has been immersed in an electron gas. The host system will respond to
+  this perturbation by a local distortion of its density. To compute the distortion, we note that
+  the eﬀective potential Veﬀ (r) created by the test charge changes the electronic energy levels
+  according to p → p − Veﬀ . (Here, we assume that the external perturbation changes so slowly
+  that the simultaneous usage of momentum and coordinate quantum numbers is not in conﬂict
+  with the uncertainty relation.) The induced charge density thus reads as
+                                                                                    
+                               d3 p                                                     d3 p
+          ρind (r) = −e             [n F ( p − V eﬀ (r)) −  n F ( p )] ≈ eV eﬀ (r)         ∂ nF (p )
+                              (2π)3                                                    (2π)3
+                                             
+                       T →0                        d3 p
+                        ≃ −eVeﬀ (r) d                   δ( − p ) δ( − μ) = −eVeﬀ (r)ν0 ,
+                                                 (2π)3
+                                                                
+                                                      ν()
+
+  where in the second equality we assumed weakness of the induced potential and in the third
+  equality used the low-temperature approximation ∂ nF () ≃ −δ( − μ). A substitution of this
+  result into the Fourier transform of the Poisson equation ∇2 Veﬀ (r) = −4πeρ(r) = −4πe(eδ(r) +
+  ρind (r)) gives
+                                                         4πe2
+                                         Veﬀ (q) =                      .
+                                                     q 2 + 4πe2 ν   0
+
+We also note that Thomas–Fermi screening repairs our problem with the density of states.
+The pathology discussed on page 213 found its origin in the (1/q 2 )-singularity of the
+unscreened potential. This IR singularity is now cut oﬀ at momenta q ∼ λ−1 , implying
+benign behavior of the density of states. Using the fact that the density parameter rs scales
+with the Fermi energy as (exercise) rs ∼ μ−1/2 , and diﬀerentiating ρ = ∂μ2 F , it is indeed
+straightforward to verify that the RPA expansion of F no longer leads to singular behavior
+of ρ at the Fermi energy.
+   It is also interesting to consider the limit vF /ω  q −1 of essentially dynamic polariza-
+tion. Expansion of Πq,ωm in Eq. (5.30) to ﬁrst order in vF q/ω  1 leads to the expression
+                                         4πe2      1           4πe2 1
+                        Veﬀ (q, ωm ) =                     2 =               ,
+                                                         2
+                                          q 2 1 + 4πν0 e2 vF    q 2 1 − ωp22
+                                                       3ωm                  ω
+
+where ωp ≡ (4πne2 /m)1/2 denotes the plasma frequency and we have used the fact that
+(exercise) the particle density n ≡ N/L3 = 2kF3 /6π 2 . In fact, the form of the denominator
+hints at a collective instability of the electron gas at frequencies ∼ ωp . Referring for a more
+rigorous discussion to the next chapter, one can understand the origin of the instability by
+another heuristic argument. What we need to remember is that the current formalism is
+222                                          Perturbation theory
+
+developed for imaginary times τ . Eventually we will be
+interested in real-time dynamics, i.e. we need to analyt-
+ically continue back to t ∼ −iτ . In the language of fre-
+quencies, this amounts to an analytic continuation process
+                                                                                           E
+from Matsubara frequencies to real frequencies, iωm → ω.
+Sloppily substituting a real frequency
+                                      into
+                                         −2the potential, we
+obtain Veﬀ (q, ωm → −iω) ∝ 1 − ωp2 /ω 2      , i.e. the system
+seems to respond singularly to excitations with frequency
+ω ∼ ωp . The cause of this instability is the well-known
+                                                                                                          x
+plasmon mode of the electron gas.
+
+
+
+     INFO The physics of the plasmon mode can be understood as follows. Imagine the electron
+     gas uniformly displaced by a distance x against the positively charged background (see ﬁgure).
+     This will lead to the formation of oppositely charged surface layers at the two ends of the system.
+     The surface charge densities ρ± = ±exn lead to an electric ﬁeld E = 4πenx directed opposite
+     to the displacement vector. Mobile charge carriers inside the system are thus subject to a force
+     −4πe2 nx. The solution of the equation of motion mẍ = −4πe2 nx oscillates at a frequency
+     ωp = (4πe2 n/m)1/2 , the plasma frequency. Since the motion of the charge carriers is in turn
+     responsible for the accumulation of the charged surface layers, we conclude that the system
+     performs a collective oscillatory motion, known as the plasmon excitation.
+
+
+
+At this point we conclude our preliminary discussion of the electron gas. We have seen that
+large-order perturbation theory can be applied to successfully explain various features of
+the interacting system: energetic lowering due to quantum correlation, screening, and even
+collective instabilities.
+   The interacting electron gas is but one example of the many applications of the diagram-
+matic perturbation theory. After the full potential of the approach had become evident – in
+the late 1950s and early 1960s – diagrammatic techniques of great sophistication were devel-
+oped, and applied to a plethora of many-body problems. Indeed, more than two decades
+passed before large-order perturbation theory eventually ceased to be the most important
+tool of theoretical condensed matter physics. Reﬂecting the great practical relevance of the
+approach, there is a huge body of textbook literature concentrating on perturbative meth-
+ods.30 Although it would make little sense to develop the ﬁeld in its full depth once again,
+a few generally important concepts of diagrammatic perturbation theory are summarized
+in the next section.
+
+
+
+30
+     See, e.g., A. A. Abrikosov, L. P. Gorkov, and I. E. Dzyaloshinkii, Methods of Quantum Field Theory in
+     Statistical Physics (Dover Publications, Inc., 1975), A. Fetter and J. D. Walecka, Quantum Theory of Many-
+     Particle Systems (McGraw-Hill, 1971), D. Pines and P. Nozières, The Theory of Quantum Liquids – Normal
+     Fermi Liquids (Addison-Wesley, 1989), and S. Doniach and E. H. Sondheimer, Green Functions for Solid State
+     Physicists (Benjamin/Cummings, 1974).
+                                          5.3 Inﬁnite-order expansions                                          223
+
+                                      5.3 Inﬁnite-order expansions
+Turning back to the prototypical φ4 -model, it is the purpose of the present section to
+introduce a number of general concepts of inﬁnite-order perturbative summations. As should
+be clear from the discussion above, a meaningful summation over an inﬁnite set of diagrams
+necessitates the existence of a class of perturbative corrections that is “more important”
+than others. In practice, what we need is a small parameter that discriminates between
+diagrams of diﬀerent structure. In our example above, this parameter was the eﬀective
+density rs of the electron gas. However, in other settings, the control parameter N may
+be deﬁned quite diﬀerently: large values of a spin, S, the number of colors, Nc , in QCD,
+the number of spatial dimensions, d, the number of modes of an optical wave guide, etc.
+Unfortunately, in most physical contexts, these parameters are typically far from large,
+S = 1/2, d = Nc = 3, etc. So we have to resort to a “poor man’s” strategy where we
+develop a controlled and self-consistent theory in the limit of asymptotically large control
+parameters and hope that some fragments of truth survive the limit down to more mundane
+values of N . Perhaps unexpectedly, this strategy often works astonishingly well down to
+values N = O(1).
+  So let us, then, begin by introducing a large control parameter into a φ4 -
+type theory. This can be achieved by promoting φ from a scalar to an N -
+component vector ﬁeld φ = {φa }, a = 1, . . . , N . The self-interaction of the
+ﬁeld is modeled as g dd x φa φa φb φb , i.e. an expression that is “rotationally” invariant in
+φ-space. The action of our modiﬁed theory is thus given by
+                                                                      
+                                     1            r         g
+                     S[φ] ≡ d x d
+                                       ∂φ · ∂φ + φ · φ +       (φ · φ) ,
+                                                                      2
+                                                                                        (5.37)
+                                     2            2        4N
+where the factor 1/N in front of the interaction constant has been introduced for later
+convenience.
+  As before, we shall concentrate on the Green function Gab (x − y) = φa (x)φb (y) as
+a “test observable.” Denoting the Green function by a bold line, the free Green function
+G0 ≡ φa (x)φb (y) 0 ∝ δ ab by a thin line, and the interaction operator by a wavy line,31
+the structure of the ﬁrst- and second-order expansion of the Green function is shown in
+the upper portion of Fig. 5.8. For simplicity, the combinatorial factors weighting individual
+diagrams have been omitted.
+
+
+                                            Self-energy operator
+Even without resorting to the large-N structure of the theory, it is possible to bring some
+order in the spaghetti of diagrams contributing to the expansion. Indeed, there are two
+distinct subclasses of diagrams: diagrams that are one-particle reducible (i.e. can be cut
+into two halves by cutting a single internal line, see the classiﬁcation on page 204) and
+those that are not. This observation motivates the collection of all one-particle irreducible
+
+31
+     Since the four ﬁeld vertices entering the interaction are no longer indiscriminate, the interaction “point” rep-
+     resentation of Section 5.1 is no longer suitable.
+224                                            Perturbation theory
+
+
+                       =           +               +
+
+
+                           +                           +                 +
+
+
+                           +                       +                          +
+
+
+
+
+                           +               +                     + ...
+
+
+                       =           +               +                         + ...
+
+
+                       =           +
+
+
+
+
+                       =       +               +             +           +
+
+
+
+                           +           +                   + ...
+
+Figure 5.8 Expansion of the Green function of φ4 -theory. Bottom: expansion of the self-energy
+operator.
+
+
+
+
+subportions of the diagrammatic expansion into a structural unit. In Fig. 5.8 this entity,
+which is commonly called the self-energy operator, and sometimes also the eﬀective
+mass operator, is denoted by a hatched circle. The ﬁrst- and second-order expansion of
+the self-energy is shown in the bottom part of the ﬁgure.
+
+  With that deﬁnition, the Green
+function becomes a “chain” of self-                        Freeman Dyson, 1923–
+                                                           Trained as a mathematician,
+energy operators, separated by free                        Dyson turned to physics in
+Green function lines, as shown in                          the 1940s. His work in con-
+the second equality of the ﬁgure.                          densed matter physics, statisti-
+A convenient representation of the                         cal mechanics, and several other
+                                                           areas has had lasting inﬂuence on
+expansion is shown in the third                            the development of modern the-
+equality. An insertion of the full                         oretical physics. Beyond his professional work in
+Green function after the ﬁrst self-                        physics, Dyson has written several books on the
+                                                           social implications of modern science. (Photo by
+energy correction recursively gener-                       Randall Hagadorn. Courtesy of the Institute of
+ates the full series. Let us translate                     Advanced Study.)
+these statements into the language
+                                        5.3 Inﬁnite-order expansions                                       225
+
+of formulae. Denoting the set of all self-energy diagrams by Σ̂ = {Σab (x − y)},32 the
+expansion of the Green function assumes the form
+                     Ĝ = Ĝ0 + Ĝ0 Σ̂Ĝ0 + Ĝ0 Σ̂Ĝ0 Σ̂Ĝ0 + · · · = Ĝ0 + Ĝ0 Σ̂Ĝ.                  (5.38)
+Here, the operator products involve summation over coordinates and internal indices, i.e
+(ÂB̂)ab (x − y) = dd z Aac (x − z)B cb (z − y). Recursion relations of this type are commonly
+referred to as Dyson equations. The Dyson equation states that the problem of calculating
+Ĝ is essentially tantamount to that of analyzing the self-energy. To make this point more
+explicit, let us reformulate the Dyson equation in momentum space:
+                         Ĝp = Ĝ0,p + Ĝ0,p Σ̂p Ĝp ⇔ [1 − Ĝ0,p Σ̂p ]Ĝp = Ĝ0,p .
+Here we have used the convolution theorem or, more physically, the fact that all scattering
+processes lumped into the self-energy conserve momentum separately. Matrix multiplication
+of this identity from the right by [1 − Ĝ0,p Σ̂p ]−1 leads to the expression
+                                                         #           $−1
+                        Ĝp = [1 − Ĝ0,p Σ̂p ]−1 Ĝ0,p = Ĝ−1
+                                                           0,p − Σ̂p     .
+                            #      $ab
+Finally, using the fact that Ĝ−1
+                               0,p     = (p2 + r)δ ab , we arrive at the formal solution
+
+                                           #                  $ab
+                                                           −1
+                                        p = (p + r − Σ̂p )
+                                       Gab    2
+                                                                  .                                    (5.39)
+
+This equation provides two lessons: ﬁrstly, the full information about the Green function is
+indeed stored in the self-energy; secondly, the self-energy somehow “adds” to the arguments
+p2 and r entering the quadratic action, a point to be discussed in more detail below.
+   But how then do we compute the self-energy operator? In fact, the construction recipe
+follows from what has been said above. By deﬁnition, the nth-order contributions to the self-
+energy are generated by a connected and one-particle irreducible contraction of n interaction
+operators (weighted with the appropriate combinatorial factor 1/n!). Two ﬁeld vertices stay
+uncontracted as connectors to the free Green function lines contacting the self-energy. For
+example, the ﬁrst-order contribution is given by (exercise)
+                                          ⎛                             ⎞
+                     #      $ab         g    1            
+                       Σ(1)
+                        p       = −δ ab d ⎝        G0,p +      G0,p−p ⎠ ,
+                                       L    N                
+                                                        p             p
+
+where the ﬁrst (second) contribution corresponds to the ﬁrst (second) diagram in the self-
+energy expansion of Fig. 5.8.
+     EXERCISE Represent the second-order contribution Σ(2) in terms of Green functions.
+Once the self-energy has been computed to any desired order, the result is substituted into
+Eq. (5.39) and one obtains the Green function.
+
+32
+     The conservation of global momentum of the theory implies (exercise: think about it!) that, like the Green
+     function, the self-energy depends only on the diﬀerence of its coordinate arguments.
+226                                     Perturbation theory
+
+  INFO The critical reader will note that there are some problems with the line of argument above.
+  Firstly, we have tacitly ignored the issue of combinatorics. (How do we know that once we have
+  plugged the expansion of the self-energy into the Dyson equation we get the same result as a
+  brute-force direct expansion of the Green function would have obtained?) To understand that the
+  two-step program – “ﬁrst compute the self-energy, and then substitute into the Dyson series” –
+  indeed produces correct results, let us consider the nth-order contribution to the expansion of
+  the Green function with its overall combinatorial factor 1/n!. Now imagine that we want to
+  distribute those diagrams that contain, say, one free internal Green function over two self-energy
+  operators according to the expression G0 ΣG0 ΣG0 . Assuming that the ﬁrst self-energy operator
+                                                                                       !
+  is of order m < n and the second one of order n − m, we notice that there are m    n
+                                                                                         possibilities
+  to distribute the interaction vertices over the two self-energies. That means that we obtain an
+                                        !
+                                   1 n
+  overall combinatorial factor of n!  m
+                                                 1
+                                          = m! (n−m)! . But 1/m! and 1/(n − m)! are precisely the
+  combinatorial factors that appear in the deﬁnition of an mth- and an (n − m)th-order self-
+  energy operator, respectively. Arguing in reverse, we conclude that the prescription above indeed
+  produces the correct combinatorics.
+     A second objection concerns the consistency of the expansion, i.e. the nth-order expansion
+  of the self-energy is, of course, by no means equivalent to nth-order expansion of the Green
+  function, nor to any speciﬁc order of the expansion. Indeed, when working with the concept of a
+  self-energy, structuring the expansion according to its order in the interaction operator does not
+  make much sense. We should rather focus on the summation of speciﬁc inﬁnite-order diagram
+  classes as exempliﬁed in the previous section and discussed in more general terms below.
+
+
+
+                                      Large-N expansion
+So far we have not made reference to the N -component structure of the theory. However,
+let us now assume that N is very large, i.e. that we may be content with an expansion of
+the Green function to leading order in 1/N . This condition can be made explicit by sending
+N → ∞ and declaring limN →∞ Gaa   p to be our observable of interest.
+
+  The limit of large N entails a
+drastic simpliﬁcation of the diagram-      Max Born, 1882–1970
+matic expansion. Each interaction          Worked on the mathematical
+vertex comes with an overall factor        basis of quantum mechanics.
+                                           Amongst his major contributions
+of 1/N which must be compensated           was the interpretation of the abso-
+by a summation over ﬁeld com-              lute square of the wave function
+ponents to produce a contribution          as a measure of the probability
+                                           of ﬁnding the particle at a given location. Born
+that survives the limit N → ∞.             shared the 1954 Nobel Prize in Physics with Walter
+This condition removes numerous            Bothe for “for his fundamental research in quantum
+diagrams contributing to the series.       mechanics, especially for his statistical interpretation
+                                           of the wavefunction.” (Image c The Nobel Foun-
+For example, in the Green function         dation.)
+expansion of Fig. 5.8 only the ﬁrst,
+third, eighth and ninth diagrams survive the limit. In all other contributions, interaction
+and Green function lines are interwoven in a way that does not leave room for one ﬁeld-index
+summation per interaction vertex.
+                                   5.3 Inﬁnite-order expansions                                   227
+
+   Inspection of the series shows that only dia-
+grams void of crossing interaction lines (cf. the      =           +                  + ...
+ﬁgure on the right) survive the limit of large N .
+The approximation – indeed in the limit of inﬁ-
+nite N it becomes exact – that retains only these      =
+contributions is commonly called the non-crossing approximation (NCA). More poet-
+ically, the diagrams contributing to the reduced expansion are sometimes called “rainbow
+diagrams.”
+   Importantly, the NCA self-energy can be computed in closed form. All one has to realize
+is that the summation over all rainbow diagrams amounts to substitution of the full NCA
+Green function under a single interaction line (exercise). Using the fact that in the NCA
+the self-energy is proportional to unity in the ﬁeld-index space, we can express this fact
+through the formula
+                                                                   −1
+                  Σ̂p = −gL−d         Gp = −gL−d       p2 + r − Σp
+                      NCA
+                                                                          .          (5.40)
+                                     p                  p
+
+In the literature, this equation goes under the name self-consistent Born approxima-
+tion. It is a “Born approximation” because, formally, it resembles a ﬁrst-order perturbative
+correction (the overall factor of g). The approximation is “self-consistent” because the self-
+energy recursively appears on the right-hand side of the equation again, i.e. the equation is
+in fact not of ﬁrst but of inﬁnite order.
+  INFO Although the objective of the present section is to expose general structures, let us
+  brieﬂy review the solution of a Born equation. To keep things simple, let us assume that
+  we are dealing with the low-energy approximation to some microscopic model, i.e. that the
+  momentum summations must be cut oﬀ at some upper limit Λ. We further make the assumption
+  (to be checked self-consistently) that the solution for the self-energy operator will turn out to be
+  momentum-independent: Σp = Σ. This leads to the expression
+                                              Λ d
+                                                   d p       1
+                                     Σ ≈ −g                         .
+                                                 (2π)d p2 + r − Σ
+  The evaluation of the integral depends on dimensionality and on the analytical structure of
+  the energy denominator. For example, taking d = 2 and assuming that the parameter r is
+  much smaller than the self-energy induced by scattering – an assumption also to be checked
+  self-consistently later on – we obtain
+                                      Λ2                         
+                                   g               1     g      Λ2
+                            Σ≈−           d(p2 ) 2   ≃−    ln −      .
+                                  4π 0          p −Σ    4π       Σ
+  A solution Σ(g, Λ) can now be sought by approximate analytical methods, or graphically. (One
+  plots both sides of the equation as functions of Σ and seeks a crossing point.)
+    However, for our present discussion, more important than the detailed dependence of Σ on the
+  input parameters g and Λ is the principal meaning of the self-energy: apparently, Σ adds to the
+  parameter r of the naked Green function. (Notice that the solution of the equation determining
+  Σ will be negative.) Remembering that r ∼ ξ −1/2 , one concludes that the interaction operator
+  lowers the spatial correlation of the system. This is indeed what one should expect intuitively:
+  scattering due to interactions acts as a source of “disorder” inside the system.
+228                                                   Perturbation theory
+
+                         (p,a)           (p,a)
+                                         (               (p′,b)
+
+      C (4) =                        +
+
+                     (p+q,a)             (p+q,a)         (p′+q,b)
+
+
+
+
+           =                         +                            +                         +       +   . . .
+
+
+
+                 (p,a)      (p′,b)
+
+                                     =               +                      +   . . .   =       +
+
+                (p+q,a) (p′+q,b)
+
+
+                                     =           +           +      . . .
+
+
+Figure 5.9 Expansion of the four-point function. Notice that the arrows represent the full Green
+function, i.e. all diagrams “renormalizing” the two-particle subunits of the diagram are automati-
+cally included.
+
+
+At this stage, it is worthwhile to take a step back and see what we have achieved. We
+have managed to compute the Green function to inﬁnite order in an expansion in the set
+of “relevant” diagrams. How does that ﬁt together with what has been said in Section 5.1
+about the “asymptotic” nature of perturbative series? In fact, the exponential proliferation
+of the number of diagrams, i.e. the mechanism that led to the eventual breakdown of the
+perturbative expansion, is blocked by the limit N → ∞. Only subclasses of diagrams, with
+far fewer members, contribute and the series remains summable.
+   The large-N principle is actually not limited to the expansion of the Green function. To
+illustrate the point, let us brieﬂy consider the expansion of the four-point correlation
+function
+                                 1  1  a a
+                         Cq(4) =                φp φ−p−q φb−p φbp +q .              (5.41)
+                                 N     L2d      ab          p,p
+
+In the next chapter we will see that objects of this architecture represent the most impor-
+tant information carriers of the theory. Unlike the Green function discussed previously, they
+relate directly to observable quantities. In the many-body literature, the four-point function
+is described as a two-particle propagator, indicating that it describes the joint propaga-
+tion of two particles. Leaving a more substantial discussion of the meaning of this object to
+the next chapter, we concentrate here on the formal aspects of its perturbative expansion.
+   The structure of the expansion of the four-point function is shown in Fig. 5.9 where, for
+simplicity, momentum/component-indices are indicated only once. The simplest diagram
+contributing to the expansion9 consists: 9of just two Green
+                                                       :    functions. It encapsulates all dis-
+connected contractions, i.e. φp φ−p φ−p−q φp +q ∼ δ ab δpp contributing to C (4) . All
+                                 a b        a      b
+                                     5.3 Inﬁnite-order expansions                              229
+
+other contractions simultaneously involve all four ﬁeld operators, i.e. they contain interac-
+tion lines between the Green functions. The sum of all these contributions is represented by
+the diagram containing the hatched surface. A few low-order contributions to the expansion
+are explicitly shown in the second line. Notice that all arrows appearing in these diagrams
+are fat. This means that diagrams “dressing” the two-particle sub-units of the expansion
+are automatically included. For example, the second contribution, containing just a single
+interaction line between the two-particle propagators, in fact represents an entire series of
+diagrams obtained by substituting the expansion of Fig. 5.8 for the full Green function. (In
+an analytical calculation, one will take account of these contributions simply by substitution
+of the self-energy renormalized Green function for each arrow.)
+  EXERCISE Write down the analytical expressions contributing to the low-order diagrams shown
+  in the ﬁrst and second lines of the ﬁgure.
+
+All diagrams involving interactions between the two Green functions have the common factor
+that they contain four external “legs,” i.e. the Green function connectors to the external
+ﬁeld operators. If you imagine these legs removed, you end up with a “core contribution”
+often called the vertex. (The designation is motivated by the fact that the ﬁrst contribution
+to the vertex is, indeed, the contracted interaction vertex of the action; see diagram no. 2.)
+In Fig. 5.9, the vertex is denoted by a tightly hatched area.
+   As with the Green function, the expansion of the vertex can be given some structure.
+To this end, notice that some of the diagrams contributing to the vertex (e.g. the second
+diagram in the second line with external legs removed) can be cut into two just by cutting
+two internal Green function lines. Vertex diagrams of this type are called two-particle
+reducible, by analogy with the “one-particle reducible” contributions to the expansion
+of the Green function. As with the expansion of the latter, one can lump all irreducible
+contributions to the vertex (e.g. the last diagram in the ﬁrst line, or the ﬁrst diagram in
+the second line, external legs removed) into a structural subunit called the irreducible
+vertex. In Fig. 5.9, that unit is denoted by a lightly hatched area. The ﬁrst two diagrams
+contributing to the irreducible vertex are shown in the fourth line of the ﬁgure. Here, one can
+see that the irreducible vertex plays a role similar to the self-energy of the Green function.
+Expressed in terms of the irreducible vertex, the expansion assumes the regular form shown
+in the third line.
+   To represent these graphical rela-
+tions in analytical form, we denote            Hans Albrecht Bethe, 1906–
+the full vertex by the symbol Γ̂ =             2005
+     
+       ,bb                                    Nobel Laureate in physics in 1967
+{Γaa
+   p,p ,q } and the irreducible ver-
+                                             for his “contributions to the the-
+tex by Γ̂0 = {Γaa        ,bb
+                      0,p,p ,q } where the    ory of nuclear reactions, espe-
+indices a, a , b, b keep track of the        cially his discoveries concerning
+                                               the energy production in stars.”
+index labels carried by the four               As well as nuclear matter, he has
+Green functions entering the ver-              also contributed substantially to atomic and con-
+tex. (Although we have deﬁned our              densed matter physics.” (Image c The Nobel Foun-
+                                               dation.)
+correlation function in such a way
+that a = a , b = b , a generalization
+230                                               Perturbation theory
+
+to a four-fold index label is necessary to formulate the recursion Eq. (5.42).) The three
+momentum arguments represent the momenta of the Green functions connecting to the
+vertex operators, as indicated explicitly in the ﬁrst line of the ﬁgure. (Remember that
+the theory has overall momentum conservation, i.e. three momentum arguments suﬃce to
+unambiguously ﬁx the momentum dependence of Γ and C (4) .) The content of the third line
+of the ﬁgure can then be expressed in terms of a closed recursion relation:
+
+                                               1  aa ,cc                        
+                      Γaa ,bb     aa ,bb
+                       p,p ,q = Γ0,q,p ,p +             Γ      Gc  Gc  Γcc ,bb .                      (5.42)
+                                                   Ld   0,p,p ,q p p +q p ,p ,q
+                                                      c,c ,p
+
+
+Equations of this type are (often) called Bethe–Salpeter equations. Comparison with
+Eq. (5.38) shows that this equation appears to be conceptually similar to the Dyson equation
+for the one-particle Green function.33 Indeed, the principle behind most recursion relations
+of perturbation theory is a structure like
+
+
+                                                X̂ = X̂0 + X̂0 ∗ Ẑ ∗ X̂,                                        (5.43)
+
+
+where X̂ is our object of interest (e.g. Γ̂), X̂0 its “free” version, Ẑ a subunit that is, in
+some sense, “irreducible” (Σ̂ or Γ̂0 GG), and ∗ some generalized matrix convolution.
+
+
+                          C (4) =                 +                  +                 +    . . .
+
+
+
+Figure 5.10 Large-N expansion of the two-particle correlation function into a “ladder structure”.
+
+Owing to the importance of the two-particle propagator, the solution of Bethe–Salpeter
+type equations is a central issue of many areas of many-body physics. In most cases only
+approximate solutions can be obtained. With our present example, “approximate” means
+that one sends N to large values and seeks a solution to leading order in N −1 . In that limit,
+the only surviving contribution to the irreducible vertex is the ﬁrst, i.e. a plain interaction
+line (see Fig. 5.10). As with the self-energy operator discussed in the previous section, all
+diagrams with “entangled” interaction lines are frustrated in the sense that we do not have
+as many index summations as interaction constants ∼ g/N . Such contributions vanish in
+the limit of large N . We thus conclude that the Bethe–Salpeter equation assumes the simple
+form
+                                     g     g 1  a c
+                        p,p ,q = −
+                       Γab               −          G  G  Γcb  ,
+                                    NL d   N Ld  p p +q p ,p ,q
+                                                               c,p
+
+
+
+33
+     We can make the analogy perfect by deﬁning a “one-particle vertex” Γ̂(1) = Ĝ(0)−1 [Ĝ − Ĝ(0) ]Ĝ(0)−1 . Inspection
+     of the second equality of Fig. 5.8 shows that the expansion of Γ(1) starts and ends with a self-energy operator,
+     i.e. the ﬁrst free Green function line G0 is removed, and so are the two external G0 s connecting to the self-energy
+     operator. In direct analogy to Eq. (5.42), the analytical formula for Γ(1) then reads Γ̂(1) = Σ + ΣG0 Γ̂(1) .
+                                          5.3 Inﬁnite-order expansions                                          231
+                                 
+where Γab ≡ Γaa ,bb δ aa δ bb .34 This equation can be simpliﬁed even further by making the
+ansatz Γab
+         p,p ,q = Γq , where Γ is independent of discrete indices and input momenta p and
+p . (When solving a perturbative recursion relation, it is always a good idea to try an ansatz
+of maximal simplicity, i.e. one that is no more complex than the constituting elements of
+the equation.) Then,
+                               g                         g      1
+                                    − gPq Γq ⇒ Γq = −
+                               Γq = −                                ,             (5.44)
+                              N Ld                      N Ld 1 + gPq
+                                                    
+where we have introduced the abbreviation Pq = L1d p Gp Gp+q . In principle, one may now
+proceed by substituting the large-N expansion of the Green function (5.39) and computing
+the function Pq by integration over p. This would produce a closed expression for Γ and,
+by virtue of the relation
+                                           
+                                  (4)        1
+                                C q = Pq        + N Γq Pq ,
+                                             Ld
+our correlation function. Since the emphasis in this section is on conceptual aspects of
+perturbation theory, we will not pursue the analysis to its very end. (For an analysis of the
+Bethe–Salpeter equation in a context more interesting than φ4 -theory, see the discussion of
+the quantum disorder problem in the next chapter.) Yet there is one aspect of the expression
+for Γq worth noticing. Consider Pq expanded as a Taylor series in q and focus on the
+zeroth-order contribution, P0 . From the deﬁnition of the Green function (5.39) we have
+                       1  2            1        (5.40)
+                P0 = d        Gp = ∂ Σ d     Gp = −g −1 ∂Σ Σ = −g −1 .                 (5.45)
+                      L p              L p
+
+When substituted into the formula for Γ, this shows that for small momenta the expansion
+of the numerator of the vertex starts with a power of q. (By symmetry, the ﬁrst non-
+vanishing contribution will be of O(q 2 ).) This means that both the vertex and the four-point
+correlation function are long-ranged objects, i.e. unlike the Green function, they decay not
+exponentially, but as a power law. The long-range character of the four-point function has
+observable consequences, as discussed in the next chapter.
+   Summarizing, our discussion of the two- and four-point functions, and of the RPA theory
+of the interacting electron gas has shown that, if a large parameter is present, (a) relevant
+subclasses of perturbative contributions can be identiﬁed and (b) they can be summed to
+inﬁnite order. As a matter of fact, there are not too many of these summable diagram classes:
+ring-diagrams, rainbow-diagrams and ladder-diagrams nearly exhaust the set of “friendly”
+corrections, amenable to analytical summation. Notice that, so far, we have largely restricted
+ourselves to the discussion of abstract summation schemes; i.e. we still need to learn more
+about the way intermediate results like Eq. (5.39) or (5.44) can be translated into concrete
+physical information. These aspects are discussed – on applications more rewarding than
+
+34
+     Here we have used the fact that the large-N approximation of the irreducible vertex forces the two input indices
+     a, a to be equal (and the same for the output indices). As a word of caution, strictly speaking, our large-
+     N approximation of the irreducible vertex explicitly uses the fact that the input/output indices entering our
+     deﬁnition of the vertex are equal, i.e. should we compute a correlation function where the two input/output
+     indices are diﬀerent (a rare occurrence in realistic applications), the large-N approximation of the four-point
+     functions would no longer assume the simple form of a regular ladder.
+232                                        Perturbation theory
+
+plain φ4 -theory – a little later. However, at this point we leave the discussion of formal
+perturbation theory. While a state-of-the-art exposition of the subject would require much
+more space – for pedagogical and condensed-matter-oriented texts on perturbative methods,
+see Pines and Nozières, and Schulman35 – the material introduced in this section suﬃces
+for nearly all purposes of the present text.
+  Turning back to our prototypical problem of the interacting electron gas, in the next
+chapter we extend the purely diagrammatic methods discussed above to a more powerful
+hybrid approach comprising perturbative concepts in combination with functional methods.
+
+
+
+                                    5.4 Summary and outlook
+This concludes our preliminary introduction to the concepts of perturbation theory. We have
+seen that general perturbative expansions mostly have the status of “asymptotic” rather
+than convergent series. We have learned how to eﬃciently encode perturbative series by
+graphical methods and how to assess the “importance” of individual contributions. Further,
+we have seen how the presence of a large parameter can be utilized to ﬁrmly establish
+inﬁnite-order expansions. A number of recursive techniques have been introduced to sum
+up diagram sequences of inﬁnite order.
+   However, a second look at the discussion of the previous sections shows that the central
+tool, the functional integral, did not play much of a role. All it did was to provide the
+combinatorial framework of the perturbative expansion of correlation functions. However,
+for that we hardly need the full machinery of functional integration. Indeed, the foundations
+of the perturbative approach were laid down in the 1950s, long before people even began
+to think about the conventional path integral. (For a pure operator construction of the
+perturbative expansion, see the problem set.)
+   More importantly, the analysis so far has a serious methodological weakness: all subclasses
+of relevant diagrams had the common feature that they contained certain “sub-units,” more
+structured than the elementary propagator or the interaction line. For example, the RPA
+diagrams were organized in terms of polarization bubbles, the NCA diagrams had their
+rainbows, and the ladder diagrams their rungs. Within the diagrammatic approach, in each
+diagram these units are reconstructed “from scratch,” i.e. in terms of elementary propaga-
+tors and interaction lines. However, taking seriously the general philosophy on information
+reduction declared at the beginning of the text, we should strive to make the “important”
+structural elements of an expansion our elementary degrees of freedom. This program is
+hardly feasible within purely diagrammatic theory. However, the functional integral is ide-
+ally suited to introducing degrees of freedom hierarchically, i.e. trading microscopic objects
+for entities of higher complexity. The combination of functional integral techniques with
+perturbation theory presents a powerful theoretical machinery which is the subject of the
+next chapter.
+
+
+35
+     See D. Pines and P. Nozières, The Theory of Quantum Liquids — Normal Fermi Liquids (Addison-Wesley,
+     1989), and L. S. Schulman, Techniques and Applications of Path Integration (Wiley, 1981).
+                                                   5.5 Problems                                    233
+
+                                                  5.5 Problems
+               Technical aspects of diagrammatic perturbation theory
+Taking the second-order expansion of the φ4 Green function as an example, it is the purpose of this
+problem to discuss a number of technical aspects relating to the classiﬁcation and the combinatorics of
+diagrams.
+                                     9                        :
+(a) Show that the full contraction of φ(x)φ4 (y)φ4 (y )φ(x ) generates the 945 terms
+           9G0 (x − x )G40 (0) + 72G0 (x − x )G20 (y − y )G20 (0) + 24G0 (x − x )G40 (y − y )
+                   !                          !                               !            
+                    1                                    2                            3
+
+
+             + 36G0 (x − y)G0 (x − y)G30 (0) + 144G0 (x − y)G0 (x − y)G20 (y − y )G0 (0)
+                            !                                     !                    
+                                 4                                          5
+                                     
+              + 96G0 (x − y)G0 (x             
+                                         − y )G30 (y − y )
+                                !                           
+                                     6
+              + 144G0 (x − y)G0 (x − y )G0 (y − y )G20 (0)
+                                    !                      
+                                          7
+
+
+             + (y ←→ y ).                                                                      (5.46)
+
+    Try to reproduce the combinatorial prefactors.
+(b) Check explicitly that the disconnected terms cancel against the “vacuum loops” from
+    the expansion of the denominator.
+(c) Represent the corresponding diagrams in momentum space. Convince yourself that the
+    “Kirchhoﬀ law” discussed in the main text suﬃces to unambiguously ﬁx the result.
+
+Answer:
+
+
+(a) The seven distinct pairings of the ten φ-ﬁelds are shown in Fig. 5.2 (and referred to here
+    as diagrams 1–7 in the order in which they appear in the ﬁgure). By way of example,
+    let us consider the combinatorial factor of diagram 2. There are 3 · 2 = 6 ways to pair
+    two ﬁelds φ(y) and the same for φ(y ). From these two contractions, we obtain a factor
+    (6G(0))2 . Then, there are two possible ways of pairing the two remaining φ(y) with the
+    two remaining φ(y ) leading to a factor 2G20 (y − y ). Finally, the pairing of φ(x) with
+    φ(x ) obtains a single factor G0 (x − x ). Multiplying all contributions, we obtain term
+    2.
+(b) To obtain all terms contributing to G(2) , both numerator and denominator of Eq. (5.14)
+    have to be expanded to second order (where the identiﬁcation X[φ] = φ(x)φ(x ) is
+    understood). In symbolic notation,
+          N0 + N1 + 12 N2 + · · ·                    1                     1
+                                  ≃ N0 + N1 − N0 D1 + N2 − N1 D1 + N0 D12 − N0 D2 .
+          1 + D1 + 2 D2 + · · ·
+                   1                         !    2                      2
+                                                                  !            
+                                                      G(1)
+                                                                            G(2)
+234                                                   Perturbation theory
+
+      The expression for N2 is given by formula (5.46). From the main text, we know that
+      N1 = 3G0 (x − x )G20 (0) + 12G0 (x − y)G0 (0)G0 (y − x ) and D1 = 3G20 (0). Further,
+      N0 = G0 (x − x ). Finally, D2 reads
+                 9 4            :
+                  φ (y)φ4 (y ) = 9G40 (0) + 72G20 (0)G20 (y − y ) + 24G40 (y − y ).
+
+        Collecting all the terms, we obtain
+
+         N2   −   18G0 (x − x )G40 (0) −72G0 (x − y)G30 (0)G0 (y − x ) +18G0 (x − x )G40 (0)
+                                                     !               
+                                                                −(4+y↔y )
+
+                  −9G0 (x − x )G40 (0) −72G0 (x − x )G20 (0)G20 (y − y )
+                          !                          !                
+                                 −1                                  −2
+
+                  −24G0 (x − x )G40 (y − y )
+                             !             
+                                         −3
+
+              =   144G0 (x − y)G0 (x − y)G20 (y − y )G0 (0)
+                                      !                    
+                                                      5
+                  + 144G0 (x − y)G0 (x − y )G0 (y− y )G20 (0)
+                                        !                     
+                                                          6
+                  + 96G0 (x − y)G0 (x − y )G30 (y− y )
+                                    !                 
+                                                  7
+                                     
+                  +(y ←→ y ),
+
+    i.e. the set of connected diagrams shown in Fig. 5.4.
+(c) This translates to a straightforward exercise in Fourier transformation.
+
+
+
+                         Self-consistent T-matrix approximation
+As well as scattering from lattice vibrations and other electrons, the low-temperature conductivity of
+a metal is heavily inﬂuenced by defects or impurities. The general role of weak impurity scattering is
+discussed in some detail in Section 6.5. As a warm-up to our more comprehensive discussion below,
+the aim of the present problem is to determine the scattering rate imposed by a collection of isolated
+impurities using diagrammatic perturbation theory.
+
+Consider a system of spinless electrons subject to a random pattern of Nimp non-magnetic
+scattering impurities and described by the Hamiltonian Ĥ = Ĥ0 + Ĥimp , where Ĥ0 =
+       †
+  k k ck ck ,
+
+                                              
+                                               Nimp
+                                                                                       
+                                                                                       Nimp
+                                                                 †
+              Ĥimp = v0 a   d            d
+                                         d r          δ(r − Ri )c (r)c(r) = v0 a   d
+                                                                                              c† (Ri )c(Ri ),
+                                               i=1                                     i=1
+
+and we have assumed that an impurity at position Ri creates a local potential v0 ad δ(r−Ri ).
+(Here a is a constant, of dimensionality [length], identiﬁed roughly with the extension of
+the impurity.)
+                                                  5.5 Problems                                                235
+
+  Our aim is to compute the single-particle Green function Gn (r − r ) ≡ c†n (r)cn (r ) imp
+where n is a Matsubara frequency index and the conﬁgurational average . . . imp ≡
+        
+L−dNimp i dd Ri is deﬁned by integration over all impurity coordinates.
+(a) To begin, let us consider scattering from a single impurity (i.e. Nimp = 1). By developing
+    a perturbative expansion in the impurity potential, show that the Green function can
+    be written as Ĝn = Ĝ0,n + Ĝ0,n T̂n Ĝ0,n , where
+               T̂n = Ĥimp + Ĥimp Ĝ0,n Ĥimp + Ĥimp Ĝ0,n Ĥimp Ĝ0,n Ĥimp + · · · imp ,               (5.47)
+    denotes the T-matrix,36 and Ĝn = {Gn (r − r )}. Show that the T-matrix equation is
+                                                               −1
+    solved by Tn (r, r ) = δ(r − r )L−d (v0 ad )−1 − G0,n (0)     .
+(b) For a collection of random impurities, the capacity for multiple scattering makes the
+    concept of the T-matrix deﬁned for the full operator Ĥimp unilluminating. Instead, one
+    would like to ﬁnd an expression for the conﬁgurational average of the Green function
+    involving the T-matrix of a single isolated impurity. Presenting the Green function as
+    a series expansion in the impurity potential v, enumerate and classify the contributions
+    entering the conﬁgurational average up to third order in v. Organising the series at this
+    order in a diagrammatic expansion, show that a subset (all but one) of the diagrams can
+    be incorporated into a Dyson series expansion, Gk = G0,k +G0,k Σk Gk , where Gk ≡ Gn,k
+    denotes the Green function in a four-momentum representation, Σk = Nimp k|T̂n |k is
+    the self-energy and T̂n represents the T-matrix for a single isolated impurity.
+       The Dyson series expansion can be inverted to give Gk = (iωn − ξk − Σk )−1 . When
+    Fourier transformed back to time/space, one may note that the imaginary part of the
+    self-energy can be associated with (one half of) the scattering rate, ImΣk = − 2τ   1
+                                                                                          sgn(n)
+    (cf. the Info block on page 379 for further discussion of this point). To understand the
+    sign factor sgn(n), notice that the imaginary part of Tn is determined by the imaginary
+    part of G0,n . However, it is straightforward to verify that sgn(ImG0,n ) ∝ sgnn. (For
+    a comprehensive discussion of the analyticity properties of the self-energy, we refer to
+    Chapter 7.)
+(c) Sometimes, one is interested in the T-matrix for a ﬁxed (unaveraged) pattern of dilute
+    impurities. In this case, the single-impurity T-matrix is given by the right hand side of
+    Eq. (5.47), without the averaging brackets; it is no longer diagonal in momentum space,
+    i.e. T̂n = { k|T̂n |k } = {Tn,kk }.
+       Making use of the operator identity (1− Ô2 )−1 −(1− Ô1 )−1 = (1− Ô2 )−1 (Ô2 − Ô1 )(1−
+    Ô1 )−1 , and deﬁning the real-frequency analytical continuation T̂ ± () ≡ T̂ (iωn →  ± iδ)
+    (the same for Ĝ) show that
+                                                                          −
+                               T̂ + () − T̂ − () = T̂ − ()(Ĝ+
+                                                                0 () − Ĝ0 ())T̂ ().
+                                                                                  +
+                                                                                                           (5.48)
+      Using this result, show that the scattering rate is given by
+                     1                           
+                        ≡ Im Σ( = k + i0) = π      | k |T̂ + (k )|k |2 δ(k − k ).                   (5.49)
+                    2τ                                     k
+
+
+36
+     For a discussion of the physical content of the T-matrix and its connection to the scattering matrix, we refer
+     to any elementary text on scattering theory.
+
