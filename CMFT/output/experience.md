@@ -1,0 +1,7 @@
+# experience
+
+While revising this note, the most useful lesson was that the style of the existing chapter summaries is not to list concepts one by one, but to let the equations drive the story. The note should begin from a concrete quantity we want to calculate, then put down the key formula, and only after that explain what each part means. This makes the text read more like a study note and less like a report outline.
+
+I also learned that the previous version was correct in content but too segmented. The `zhihu` notes usually keep only a small number of headings, and most of the explanation is done through connected paragraphs. So when summarizing later chapters, it is better to keep a smoother flow: introduce the problem, write the equation, explain the physical meaning, and then give one representative calculation or result. If every small idea becomes a subsection or a bullet, the note starts to feel fragmented.
+
+Another thing to notice is that these summaries work best when they keep one concrete example running through the whole note. In this chapter, the best example is the first-order correction to the Green function in `\phi^4` theory, because it naturally brings in Wick contraction, connected-diagram cancellation, ultraviolet divergence, and the meaning of Feynman rules all at once. For future chapter summaries, I should try to choose one backbone example like this and use it to connect the formalism to the physics.
